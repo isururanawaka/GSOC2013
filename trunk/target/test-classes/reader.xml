@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Edited by XMLSpy® -->
+<breakfast_menu>
+	<food item='under700'>
+		<name>Belgian Waffles</name>
+		<price>$5.95</price>
+	</food>
+    <food>
+        <name>Strawberry Belgian Waffles</name>
+        <price>$7.95</price>
+    </food>
+</breakfast_menu>

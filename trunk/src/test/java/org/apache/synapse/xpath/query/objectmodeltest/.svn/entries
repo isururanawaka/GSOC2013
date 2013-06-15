@@ -1,0 +1,42 @@
+10
+
+dir
+0
+https://subversion.assembla.com/svn/streaming-xpath/trunk/src/test/java/org/apache/synapse/xpath/query/objectmodeltest
+https://subversion.assembla.com/svn/streaming-xpath
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+14d630dd-6bb5-4699-8d73-084b7fe91852
+
+SelectingQueryNodesAxisTestCase.java
+file
+
+
+
+add
+
+SelectingQueryNodesTestCase.java
+file
+
+
+
+add
+

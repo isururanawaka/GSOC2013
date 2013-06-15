@@ -1,0 +1,248 @@
+package org.apache.axiom.xpath.XMLReader;
+
+import org.apache.axiom.om.OMElement;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: isuru
+ * Date: 5/17/13
+ * Time: 8:55 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class XMLReader {
+
+    private XMLStreamReader xmlStreamReader;
+    private static final XMLReader xmlReader= new XMLReader();
+    private int stepCounter;
+    private int xmlReadDepth=0;
+
+    public XMLReader(String fileName) {
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
+        try {
+            xmlStreamReader = xmlInputFactory.createXMLStreamReader(new FileReader(fileName));
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
+
+      public XMLReader(){
+
+      }
+    public static XMLReader getInstance(){
+        return xmlReader;
+    }
+
+    public void initstepCounter(){
+        stepCounter =0;
+    }
+    public void incrementDepth(){
+        xmlReadDepth++;
+    }
+    public void decrementDepth(){
+        xmlReadDepth--;
+    }
+    public int getXMLReadDepth(){
+          return xmlReadDepth;
+    }
+
+    public void incrementstepCounter(){
+        stepCounter++;
+    }
+    public int getStepCounter(){
+        return stepCounter;
+    }
+
+
+    public boolean hasNextEvent() throws XMLStreamException {
+       return xmlStreamReader.hasNext();
+    }
+
+    public XMLEventRepresentation getnextEvent() throws XMLStreamException {
+        return processReading();
+    }
+    public void setXmlStreamReader(OMElement omElement){
+     xmlStreamReader = omElement.getXMLStreamReader();
+    }
+
+    private XMLEventRepresentation processReading() throws XMLStreamException {
+
+
+
+        if (xmlStreamReader.hasNext()) {
+            XMLEventRepresentation xmlEventRepresentation = new XMLEventRepresentation();
+            switch (xmlStreamReader.getEventType()) {
+
+                case XMLStreamConstants.START_ELEMENT:
+                    xmlEventRepresentation.setType(XMLStreamConstants.START_ELEMENT);
+                    //System.out.print("<");
+                    fillName(xmlStreamReader, xmlEventRepresentation);
+                    fillNamespaces(xmlStreamReader, xmlEventRepresentation);
+                    fillAttributes(xmlStreamReader, xmlEventRepresentation);
+                    // System.out.print(">");
+
+                    break;
+
+                case XMLStreamConstants.END_ELEMENT:
+                    //  System.out.print("</");
+                    xmlEventRepresentation.setType(XMLStreamConstants.END_ELEMENT);
+                    fillName(xmlStreamReader, xmlEventRepresentation);
+                    //  System.out.print(">");
+                    break;
+
+                case XMLStreamConstants.SPACE:
+
+                case XMLStreamConstants.CHARACTERS:
+                    int start = xmlStreamReader.getTextStart();
+                    int length = xmlStreamReader.getTextLength();
+//                System.out.print(new String(xmlStreamReader.getTextCharacters(),
+//                        start,
+//                        length));
+                    xmlEventRepresentation.setType(XMLStreamConstants.CHARACTERS);
+                    xmlEventRepresentation.setNameValue(new String(xmlStreamReader.getTextCharacters(), start, length));
+                    break;
+
+                case XMLStreamConstants.PROCESSING_INSTRUCTION:
+                    // System.out.print("<?");
+                    if (xmlStreamReader.hasText()) {
+                        System.out.print(xmlStreamReader.getText());
+                        xmlEventRepresentation.setNameValue(xmlStreamReader.getText());
+                    }
+                    xmlEventRepresentation.setType(XMLStreamConstants.PROCESSING_INSTRUCTION);
+                    // System.out.print("?>");
+                    break;
+
+                case XMLStreamConstants.CDATA:
+                    System.out.print("<![CDATA[");
+                    start = xmlStreamReader.getTextStart();
+                    length = xmlStreamReader.getTextLength();
+                    System.out.print(new String(xmlStreamReader.getTextCharacters(),
+                            start,
+                            length));
+                    System.out.print("]]>");
+
+                    xmlEventRepresentation.setType(XMLStreamConstants.CDATA);
+                    xmlEventRepresentation.setNameValue(new String(xmlStreamReader.getTextCharacters(), start, length));
+                    break;
+
+                case XMLStreamConstants.COMMENT:
+                  //  System.out.print("<!--");
+                    if (xmlStreamReader.hasText()) {
+//                        System.out.print(xmlStreamReader.getText());
+//                        System.out.print("-->");
+
+                        xmlEventRepresentation.setNameValue(xmlStreamReader.getText());
+                    }
+                    xmlEventRepresentation.setType(XMLStreamConstants.COMMENT);
+                    break;
+
+                case XMLStreamConstants.ENTITY_REFERENCE:
+                  //  System.out.print(xmlStreamReader.getLocalName() + "=");
+                    if (xmlStreamReader.hasText()) {
+                       // System.out.print("[" + xmlStreamReader.getText() + "]");
+
+                        xmlEventRepresentation.setNameValue(xmlStreamReader.getText());
+                    }
+                    xmlEventRepresentation.setType(XMLStreamConstants.ENTITY_REFERENCE);
+                    break;
+
+
+                case XMLStreamConstants.START_DOCUMENT:
+                    xmlEventRepresentation.setType(XMLStreamConstants.START_DOCUMENT);
+//                    System.out.print("<?xml");
+//                    System.out.print(" version='" + xmlStreamReader.getVersion() + "'");
+                    xmlEventRepresentation.setVersion(xmlStreamReader.getVersion());
+                  //  System.out.print(" encoding='" + xmlStreamReader.getCharacterEncodingScheme() + "'");
+                    xmlEventRepresentation.setCharacterEncoding(xmlStreamReader.getCharacterEncodingScheme());
+                    if (xmlStreamReader.isStandalone()) {
+                      //  System.out.print(" standalone='yes'");
+                        xmlEventRepresentation.setStandalone(true);
+                    } else
+                       // System.out.print(" standalone='no'");
+                   // System.out.print("?>");
+                    break;
+
+            }
+
+
+            xmlStreamReader.next();
+         return xmlEventRepresentation;
+        }
+
+      return null;
+    }
+
+    private static XMLEventRepresentation fillName(XMLStreamReader xmlr, XMLEventRepresentation xmlEventRepresentation) {
+        if (xmlr.hasName()) {
+            String prefix = xmlr.getPrefix();
+            String uri = xmlr.getNamespaceURI();
+            String localName = xmlr.getLocalName();
+            xmlEventRepresentation.setPrefix(prefix);
+            xmlEventRepresentation.setUri(uri);
+            xmlEventRepresentation.setLocalName(localName);
+//            fillName(prefix, uri, localName);
+        }
+        return xmlEventRepresentation;
+    }
+
+//    private static void fillName(String prefix,
+//                                 String uri,
+//                                 String localName) {
+//        if (uri != null && !("".equals(uri)) ) System.out.print("['"+uri+"']:");
+//        if (prefix != null) System.out.print(prefix+":");
+//        if (localName != null) System.out.print(localName);
+//    }
+
+    private static void fillAttributes(XMLStreamReader xmlr, XMLEventRepresentation xmlEventRepresentation) {
+        Map<String, String> map = new HashMap<String, String>();
+        for (int i = 0; i < xmlr.getAttributeCount(); i++) {
+            fillAttribute(xmlr, i, map);
+        }
+        xmlEventRepresentation.setAttributeMap(map);
+    }
+
+    private static void fillAttribute(XMLStreamReader xmlr, int index, Map<String, String> map) {
+        String prefix = xmlr.getAttributePrefix(index);
+        String namespace = xmlr.getAttributeNamespace(index);
+        String localName = xmlr.getAttributeLocalName(index);
+        String value = xmlr.getAttributeValue(index);
+        map.put(localName, value);
+
+        // System.out.print(" ");
+        // fillName(prefix, namespace, localName);
+        // System.out.print("='"+value+"'");
+    }
+
+    private static void fillNamespaces(XMLStreamReader xmlr, XMLEventRepresentation xmlEventRepresentation) {
+        Map<String, String> map = new HashMap<String, String>();
+        for (int i = 0; i < xmlr.getNamespaceCount(); i++) {
+            fillNamespace(xmlr, i, map);
+        }
+        xmlEventRepresentation.setNamespaceMap(map);
+    }
+
+    private static void fillNamespace(XMLStreamReader xmlr, int index, Map<String, String> map) {
+        String prefix = xmlr.getNamespacePrefix(index);
+
+
+        String uri = xmlr.getNamespaceURI(index);
+        String urione = uri + "|" + String.valueOf(index);
+        //System.out.print(" ");
+        if (prefix == null) {
+          //  System.out.print("xmlns='" + uri + "'");
+            map.put(uri, null);
+        } else
+           // System.out.print("xmlns:" + prefix + "='" + uri + "'");
+        map.put(urione, prefix);
+    }
+
+
+}

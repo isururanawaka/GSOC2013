@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.263" errors="0" skipped="0" tests="5" name="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/jdk1.6.0_45/jre/lib/i386"/>
+    <property name="java.vm.version" value="20.45-b01"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk"/>
+    <property name="java.runtime.version" value="1.6.0_45-b06"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="basedir" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/jdk1.6.0_45/jre/lib/endorsed"/>
+    <property name="os.arch" value="i386"/>
+    <property name="surefire.real.class.path" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/surefire/surefirebooter5627708229544144866.jar"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/lib/jvm/jdk1.6.0_45/jre/lib/i386/server:/usr/lib/jvm/jdk1.6.0_45/jre/lib/i386:/usr/lib/jvm/jdk1.6.0_45/jre/../lib/i386:/usr/java/packages/lib/i386:/lib:/usr/lib"/>
+    <property name="surefire.test.class.path" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/test-classes:/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/classes:/home/isuru/.m3/org/antlr/antlr/3.4/antlr-3.4.jar:/home/isuru/.m3/org/antlr/ST4/4.0.4/ST4-4.0.4.jar:/home/isuru/.m3/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar:/home/isuru/.m3/org/antlr/stringtemplate/3.2.1/stringtemplate-3.2.1.jar:/home/isuru/.m3/antlr/antlr/2.7.7/antlr-2.7.7.jar:/home/isuru/.m3/junit/junit/4.10/junit-4.10.jar:/home/isuru/.m3/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/isuru/.m3/org/apache/ws/commons/axiom/axiom-api/1.2.14/axiom-api-1.2.14.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.1/geronimo-activation_1.1_spec-1.1.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/1.7.1/geronimo-javamail_1.4_spec-1.7.1.jar:/home/isuru/.m3/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/isuru/.m3/jaxen/jaxen/1.1.4/jaxen-1.1.4.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar:/home/isuru/.m3/org/apache/james/apache-mime4j-core/0.7.2/apache-mime4j-core-0.7.2.jar:/home/isuru/.m3/org/apache/ws/commons/axiom/axiom-impl/1.2.14/axiom-impl-1.2.14.jar:/home/isuru/.m3/org/codehaus/woodstox/woodstox-core-asl/4.1.4/woodstox-core-asl-4.1.4.jar:/home/isuru/.m3/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot Tiered Compilers"/>
+    <property name="os.version" value="2.6.38-8-generic"/>
+    <property name="user.home" value="/home/isuru"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="user.name" value="isuru"/>
+    <property name="java.class.path" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/test-classes:/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/classes:/home/isuru/.m3/org/antlr/antlr/3.4/antlr-3.4.jar:/home/isuru/.m3/org/antlr/ST4/4.0.4/ST4-4.0.4.jar:/home/isuru/.m3/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar:/home/isuru/.m3/org/antlr/stringtemplate/3.2.1/stringtemplate-3.2.1.jar:/home/isuru/.m3/antlr/antlr/2.7.7/antlr-2.7.7.jar:/home/isuru/.m3/junit/junit/4.10/junit-4.10.jar:/home/isuru/.m3/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/isuru/.m3/org/apache/ws/commons/axiom/axiom-api/1.2.14/axiom-api-1.2.14.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.1/geronimo-activation_1.1_spec-1.1.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/1.7.1/geronimo-javamail_1.4_spec-1.7.1.jar:/home/isuru/.m3/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/isuru/.m3/jaxen/jaxen/1.1.4/jaxen-1.1.4.jar:/home/isuru/.m3/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar:/home/isuru/.m3/org/apache/james/apache-mime4j-core/0.7.2/apache-mime4j-core-0.7.2.jar:/home/isuru/.m3/org/apache/ws/commons/axiom/axiom-impl/1.2.14/axiom-impl-1.2.14.jar:/home/isuru/.m3/org/codehaus/woodstox/woodstox-core-asl/4.1.4/woodstox-core-asl-4.1.4.jar:/home/isuru/.m3/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="/usr/lib/jvm/jdk1.6.0_45/jre"/>
+    <property name="sun.java.command" value="/home/isuru/Documents/streaming2/streaming-xpath/trunk/target/surefire/surefirebooter5627708229544144866.jar /home/isuru/Documents/streaming2/streaming-xpath/trunk/target/surefire/surefire1991552905082920751tmp /home/isuru/Documents/streaming2/streaming-xpath/trunk/target/surefire/surefire6318987509507694949tmp"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="en"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_45"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/jdk1.6.0_45/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/jdk1.6.0_45/jre/lib/resources.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/rt.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/sunrsasign.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/jsse.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/jce.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/charsets.jar:/usr/lib/jvm/jdk1.6.0_45/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/jdk1.6.0_45/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="localRepository" value="/home/isuru/.m3"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.146" classname="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase" name="testPath"/>
+  <testcase time="0.002" classname="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase" name="testPathone"/>
+  <testcase time="0.02" classname="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase" name="testPathtwo"/>
+  <testcase time="0.019" classname="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase" name="testPaththree"/>
+  <testcase time="0.011" classname="org.apache.synapse.xpath.query.objectmodeltest.SelectingQueryNodesTestCase" name="testPathfour"/>
+</testsuite>

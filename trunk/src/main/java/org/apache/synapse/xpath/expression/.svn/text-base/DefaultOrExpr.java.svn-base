@@ -1,0 +1,29 @@
+package org.apache.axiom.xpath.expression;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: isuru
+ * Date: 4/19/13
+ * Time: 12:08 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class DefaultOrExpr extends DefaultLogicalExpr{
+   public  DefaultOrExpr(Expr lhs,
+                  Expr rhs)
+    {
+        super( lhs,
+                rhs );
+    }
+
+    public String getOperator()
+    {
+        return "or";
+    }
+
+    public String toString()
+    {
+        return "[(DefaultOrExpr): " + getLHS() + ", " + getRHS() + "]";
+    }
+
+
+}

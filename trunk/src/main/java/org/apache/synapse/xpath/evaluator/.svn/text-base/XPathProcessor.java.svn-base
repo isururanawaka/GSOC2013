@@ -1,0 +1,156 @@
+package org.apache.axiom.xpath.evaluator;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.apache.axiom.xpath.XMLReader.XMLEventRepresentation;
+import org.apache.axiom.xpath.XMLReader.XMLReader;
+import org.apache.axiom.xpath.compiler.XPathCompiler;
+import org.apache.axiom.xpath.expression.*;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import java.io.FileNotFoundException;
+import java.util.List;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: isuru
+ * Date: 5/19/13
+ * Time: 7:51 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class XPathProcessor {
+
+    private XMLReader xmlReader;
+
+
+
+    public XPathProcessor(){
+          xmlReader = XMLReader.getInstance();
+
+    }
+
+
+    public static void main(String[] args) {
+        try {
+            OMElement documentElement = new StAXOMBuilder("/home/isuru/Documents/streaming-xpath/trunk/src/test/resources/reader.xml").getDocumentElement();
+            XPathProcessor processor = new XPathProcessor();
+            processor.xpathProcess(documentElement);
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+
+
+    }
+
+
+    public void xpathProcess(OMElement omElement){
+        xmlReader.setXmlStreamReader(omElement);
+        XpathExpr expr = XPathCompiler.parse("/breakfast_menu/food/price");
+        DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) expr.getRootExpr();
+        absoluteLocationPathProcess(locationPath);
+
+
+
+    }
+
+
+
+
+
+
+
+
+    public void absoluteLocationPathProcess(DefaultAbsoluteLocationPath defaultAbsoluteLocationPath) {
+        List<Step> list = defaultAbsoluteLocationPath.getSteps();
+        int numsteps = list.size();
+        boolean matched =false;
+        for(int i=0;i<list.size();i++){
+            try {
+                matched = stepSelection(list.get(i),i,numsteps);
+              //  System.out.println(matched);
+            }catch(XMLStreamException e){
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+            if(!matched){
+                System.out.println("not matched");
+                break;
+            }
+        }
+
+    }
+
+
+    public boolean stepSelection(Step step, int index,int numSteps) throws XMLStreamException {
+        boolean matched =false;
+        if (step instanceof DefaultNameStep){
+        DefaultNameStep defaultNameStep = (DefaultNameStep)step;
+        String localName = defaultNameStep.getLocalName();
+
+        while(xmlReader.hasNextEvent()){
+          XMLEventRepresentation xmlEventRepresentation = xmlReader.getnextEvent();
+
+            switch(xmlEventRepresentation.getType()){
+              case  XMLStreamConstants.START_ELEMENT:
+                     xmlReader.incrementstepCounter();
+                     xmlReader.incrementDepth();
+                    if(xmlReader.getStepCounter()==1 && index==0){
+                        if(localName.equals(xmlEventRepresentation.getLocalName())){
+                            System.out.println(localName);
+                           return true;
+                        }else{
+                            return false;
+                        }
+
+                    } else if(xmlReader.getXMLReadDepth()==index+1){
+                        if(localName.equals(xmlEventRepresentation.getLocalName())){
+                             if(numSteps==xmlReader.getXMLReadDepth()){
+
+                             }
+                            System.out.println(localName);
+                            return true;
+                        }else{
+                            System.out.println("continue");
+                            continue;
+                        }
+
+
+                    }else if(xmlReader.getXMLReadDepth()>index+1){
+                          continue;
+                    }
+                    else if(index>0 && xmlReader.getXMLReadDepth()==index){
+                        return false;
+                    }
+                       break;
+                case XMLStreamConstants.END_ELEMENT:
+                    xmlReader.decrementDepth();
+
+                    break;
+
+
+
+
+
+
+
+
+            }
+         }
+
+        } else if (step instanceof DefaultAllNodeStep){
+
+        } else if (step instanceof DefaultTextNodeStep){
+
+        } else if (step instanceof DefaultProcessingInstructionNodeStep){
+
+        } else if (step instanceof DefaultCommentNodeStep){
+
+        }
+
+       return true;
+    }
+
+
+}
