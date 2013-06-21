@@ -10,13 +10,7 @@ import javax.xml.stream.XMLStreamConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 6/5/13
- * Time: 8:23 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class ResultBuilder {
 
   private static OMElement rootElement;

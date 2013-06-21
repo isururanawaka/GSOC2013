@@ -20,6 +20,7 @@ public class XMLReader {
     private int stepCounter;
     private int xmlReadDepth=0;
     private int numberLiteralCounter=0;
+    private OMElement omElement =null;
 
 
 //    private XMLReader(String fileName) {
@@ -53,7 +54,9 @@ public class XMLReader {
     public void resetNumberLiteralCounter(){
         numberLiteralCounter=0;
     }
-
+     public OMElement getOmElement(){
+         return omElement;
+     }
 
 
     public void initstepCounter(){
@@ -86,6 +89,7 @@ public class XMLReader {
     }
     public void setXmlStreamReader(OMElement omElement){
      xmlStreamReader = omElement.getXMLStreamReader();
+        this.omElement = omElement;
     }
 
     private XMLEventRepresentation processReading() throws XMLStreamException {

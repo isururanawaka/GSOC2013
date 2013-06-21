@@ -10,16 +10,12 @@ import org.apache.synapse.xpath.util.PredicateProcessingUtil;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 5/19/13
- * Time: 7:51 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class XPathProcessor {
 
     private XMLReader xmlReader;
@@ -34,10 +30,18 @@ public class XPathProcessor {
 
 
     public static void main(String[] args) {
+        File file = new File(".");
+        String filePath =null;
         try {
-            OMElement documentElement = new StAXOMBuilder("/home/isuru/Documents/streaming2/streaming-xpath/trunk/src/objectmodeltest/resources/reader.xml").getDocumentElement();
+            filePath = file.getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        try {
+            OMElement documentElement = new StAXOMBuilder(filePath+"/src/test/resources/reader.xml").getDocumentElement();
             XPathProcessor processor = new XPathProcessor();
-         String   xpathquery = "/breakfast_menu/food[price!='$7.95']";
+         String   xpathquery = "/breakfast_menu";
             processor.xpathProcess(documentElement,xpathquery);
         } catch (XMLStreamException e) {
             e.printStackTrace();
@@ -69,6 +73,7 @@ public class XPathProcessor {
                 if (xmlReader.getXMLReadDepth() == list.size()) {
                     i = 0;
                 }
+
             } catch (XMLStreamException e) {
                 e.printStackTrace();
             }
@@ -120,12 +125,14 @@ public class XPathProcessor {
                 case XMLStreamConstants.START_ELEMENT:
                     xmlReader.incrementstepCounter();
                     xmlReader.incrementDepth();
-                    if (capturingOn && capturingOnXMlDepth == xmlReader.getXMLReadDepth()) {
+                    if (capturingOn && capturingOnXMlDepth == xmlReader.getXMLReadDepth()){
                         OMElement omElement = ResultBuilder.sendToOutput();
+                        ResultCollector.addOMElement(omElement);
                         System.out.println(omElement.toString());
                         capturingOn = false;
                     } else if (capturingOn && capturingOnXMlDepth < xmlReader.getXMLReadDepth()){
                         ResultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
+                        if(predicateType == PredicateProcessingUtil.EQUALPREDICATE ||predicateType== PredicateProcessingUtil.NOTEQUALPREDICATE){
                         if(xmlEventRepresentation.getLocalName().equals(predicateProcessingUtil.getLhs())){
                                String value = xmlEventRepresentation.getNameValue();
                                String formattedString = "'"+value+"'";
@@ -141,11 +148,16 @@ public class XPathProcessor {
                                  }
                              }
                         }
+                        }
 
                     }
                     if (xmlReader.getStepCounter() == 1 && index == 0) {
                         if (localName.equals(xmlEventRepresentation.getLocalName())) {
-                            //  System.out.println(localName);
+                            if(numSteps==1){
+                                ResultCollector.addOMElement(xmlReader.getOmElement());
+                                System.out.print(xmlReader.getOmElement());
+                            }
+                             System.out.println(localName);
                             return true;
                         } else {
                             return false;
@@ -190,6 +202,7 @@ public class XPathProcessor {
                 case XMLStreamConstants.END_ELEMENT:
                     if (capturingOn && capturingOnXMlDepth == xmlReader.getXMLReadDepth()) {
                         OMElement omElement = ResultBuilder.sendToOutput();
+                        ResultCollector.addOMElement(omElement);
                         System.out.println(omElement.toString());
                         capturingOn = false;
                     } else if (capturingOn && capturingOnXMlDepth < xmlReader.getXMLReadDepth()) {
