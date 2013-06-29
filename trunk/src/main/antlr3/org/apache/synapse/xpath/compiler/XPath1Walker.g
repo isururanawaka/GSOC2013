@@ -123,7 +123,7 @@ step returns [Step step]
                                    temp = utiltemp.getValue();
 
                                 if(axis == null){
-                                      axis = new ChildAxis(AxisUtil.CHILD);
+                                      axis = new ChildAxis(AxisUtil.CHILD,true);
                                 }
 
                                  if(temp==null){
@@ -150,7 +150,7 @@ step returns [Step step]
                                    temp = utiltemp.getValue();
 
                                 if(axis == null){
-                                      axis = new ChildAxis(AxisUtil.CHILD);
+                                      axis = new ChildAxis(AxisUtil.CHILD,true);
                                 }
 
                                  if(temp==null){

@@ -41,7 +41,7 @@ public abstract class DefaultStep implements Step{
     public int getAxis()
     {
         //return this.axis.value();
-        return 3;
+        return this.axis.value();
     }
 
     public Axis getIterableAxis()

@@ -67,8 +67,11 @@ public void twoStepQueryTest(){
    public void threeStepQuery(){
         XPathProcessor processor = new XPathProcessor();
         String   xpathquery = "/breakfast_menu/food/name";
+        double starttime = System.currentTimeMillis();
         processor.xpathProcess(getOMElement(),xpathquery);
         List<OMElement> omElementList = ResultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
         Assert.assertEquals(2,omElementList.size());
          OMElement omElementOne = omElementList.get(0);
         Assert.assertTrue(omElementOne.getText().equals("Belgian Waffles"));
@@ -77,17 +80,6 @@ public void twoStepQueryTest(){
         ResultCollector.clearList();
 
    }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

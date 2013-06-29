@@ -9,13 +9,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: isuru
- * Date: 5/6/13
- * Time: 9:56 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class SelectingQueryNodesTestCase {
 
 

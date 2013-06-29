@@ -14,13 +14,7 @@ import org.junit.Test;
 import javax.xml.soap.Name;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: isuru
- * Date: 5/11/13
- * Time: 7:26 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class SelectingQueryNodesAxisTestCase {
 
     @Test
@@ -85,7 +79,7 @@ public class SelectingQueryNodesAxisTestCase {
         DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) expr.getRootExpr();
         List<Step> list = locationPath.getSteps();
         int count = 0;
-        for (Step step : list) {
+        for (Step step : list){
             if (((DefaultNameStep) step).getLocalName().equals("book")) {
                 count++;
             } else if (((DefaultNameStep) step).getLocalName().equals("data")) {

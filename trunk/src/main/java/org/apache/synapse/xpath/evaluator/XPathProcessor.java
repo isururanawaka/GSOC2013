@@ -6,6 +6,9 @@ import org.apache.synapse.xpath.XMLReader.XMLEventRepresentation;
 import org.apache.synapse.xpath.XMLReader.XMLReader;
 import org.apache.synapse.xpath.compiler.XPathCompiler;
 import org.apache.synapse.xpath.expression.*;
+import org.apache.synapse.xpath.expression.axis.Axis;
+import org.apache.synapse.xpath.expression.axis.ChildAxis;
+import org.apache.synapse.xpath.util.AxisUtil;
 import org.apache.synapse.xpath.util.PredicateProcessingUtil;
 
 import javax.xml.stream.XMLStreamConstants;
@@ -25,7 +28,6 @@ public class XPathProcessor {
 
     public XPathProcessor() {
         xmlReader = XMLReader.getInstance();
-
     }
 
 
@@ -35,13 +37,13 @@ public class XPathProcessor {
         try {
             filePath = file.getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 
         try {
             OMElement documentElement = new StAXOMBuilder(filePath+"/src/test/resources/reader.xml").getDocumentElement();
             XPathProcessor processor = new XPathProcessor();
-         String   xpathquery = "/breakfast_menu";
+            String   xpathquery = "/breakfast_menu/food/price";
             processor.xpathProcess(documentElement,xpathquery);
         } catch (XMLStreamException e) {
             e.printStackTrace();
@@ -51,48 +53,24 @@ public class XPathProcessor {
 
 
     }
-
-
     public void xpathProcess(OMElement omElement,String xpathquery){
-
         xmlReader.setXmlStreamReader(omElement);
         XpathExpr expr = XPathCompiler.parse(xpathquery);
         DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) expr.getRootExpr();
         absoluteLocationPathProcess(locationPath);
     }
-
-
     public void absoluteLocationPathProcess(DefaultAbsoluteLocationPath defaultAbsoluteLocationPath) {
         List<Step> list = defaultAbsoluteLocationPath.getSteps();
-        int numsteps = list.size();
-        boolean matched = false;
-        for (int i = 0; i < list.size(); i++) {
-            try {
-                matched = stepSelection(list.get(i), i, numsteps);
-                //  System.out.println(matched);
-                if (xmlReader.getXMLReadDepth() == list.size()) {
-                    i = 0;
-                }
-
-            } catch (XMLStreamException e) {
-                e.printStackTrace();
-            }
-            if (!matched) {
-                System.out.println("not matched");
-                break;
-            }
-        }
-
+        Axis axis = getAxis(list);
+        stepMultiplexer(list,axis);
     }
-
-
     public boolean stepSelection(Step step, int index, int numSteps) throws XMLStreamException {
         boolean matched = false;
-        if (step instanceof DefaultNameStep) {
+        if (step instanceof DefaultNameStep){
             DefaultNameStep defaultNameStep = (DefaultNameStep) step;
             String localName = defaultNameStep.getLocalName();
             List list = defaultNameStep.getPredicates();
-            if (list.size() > 0) {
+            if (list.size() > 0){
                 PredicateProcessingUtil predicateProcessingUtil = predicateProcessing(list);
                 if (predicateProcessingUtil.getType() == PredicateProcessingUtil.NUMBERLITERALPREDICATE){
                     return evaluate(defaultNameStep, index, numSteps, PredicateProcessingUtil.NUMBERLITERALPREDICATE, predicateProcessingUtil);
@@ -116,7 +94,6 @@ public class XPathProcessor {
     }
 
     private boolean evaluate(Step step, int index, int numSteps, int predicateType, PredicateProcessingUtil predicateProcessingUtil) throws XMLStreamException {
-
         DefaultNameStep defaultNameStep = (DefaultNameStep) step;
         String localName = defaultNameStep.getLocalName();
         while (xmlReader.hasNextEvent()) {
@@ -163,13 +140,12 @@ public class XPathProcessor {
                             return false;
                         }
 
-                    } else if (xmlReader.getXMLReadDepth() == index + 1) {
-                        if (localName.equals(xmlEventRepresentation.getLocalName())) {
+                    } else if (xmlReader.getXMLReadDepth() == index + 1){
+                        if (localName.equals(xmlEventRepresentation.getLocalName())){
                             if(predicateType==PredicateProcessingUtil.NOPREDICATE || predicateType==PredicateProcessingUtil.EQUALPREDICATE || predicateType==PredicateProcessingUtil.NOTEQUALPREDICATE){
                             if (numSteps == xmlReader.getXMLReadDepth()){
                                 capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                 capturingOn = true;
-                                //   System.out.println(localName);
                                 ResultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                             }
                             }else if(predicateType==PredicateProcessingUtil.NUMBERLITERALPREDICATE){
@@ -178,7 +154,6 @@ public class XPathProcessor {
                                     if (numSteps == xmlReader.getXMLReadDepth()) {
                                         capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                         capturingOn = true;
-                                        //System.out.println(localName);
                                         ResultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                                     }
 
@@ -321,6 +296,37 @@ public class XPathProcessor {
     }
 
 
+    private Axis getAxis(List<Step> stepList){
+        Axis axis=null;
+        int numSteps = stepList.size();
+        //check only for last step initially
+          Step step =  stepList.get(numSteps-1);
+         if(step instanceof DefaultNameStep){
+            DefaultNameStep defaultNameStep = (DefaultNameStep)step;
+             axis = defaultNameStep.getIterableAxis();
 
+         }
+        return axis;
+    }
 
+    private void stepMultiplexer(List<Step> stepList,Axis axis){
+        int numsteps = stepList.size();
+        boolean matched = false;
+        if(axis instanceof ChildAxis && ((ChildAxis)axis).isNotAxisSpecifier()){
+        for (int i = 0; i < stepList.size(); i++) {
+            try {
+                matched = stepSelection(stepList.get(i), i, numsteps);
+                if (xmlReader.getXMLReadDepth() == stepList.size()) {
+                    i = 0;
+                }
+            } catch (XMLStreamException e) {
+                e.printStackTrace();
+            }
+            if (!matched) {
+                System.out.println("not matched");
+                break;
+            }
+        }
+      }
+    }
 }
