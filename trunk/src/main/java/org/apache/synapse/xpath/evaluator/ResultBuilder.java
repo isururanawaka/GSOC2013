@@ -13,15 +13,15 @@ import java.util.Map;
 
 public class ResultBuilder {
 
-  private static OMElement rootElement;
-    private static  OMElement previouseElement;
-    private static OMElement latestParent;
-  private static int initialDepth;
-    private static int previouseDepth;
-  private static int counter=0;
+  private  OMElement rootElement;
+  private   OMElement previouseElement;
+  private  OMElement latestParent;
+  private  int initialDepth;
+  private  int previouseDepth;
+  private  int counter=0;
 
 
-  public static void createOM(XMLEventRepresentation xmlEventRepresentation,int depth){
+  public  void createOM(XMLEventRepresentation xmlEventRepresentation,int depth){
 
       if(xmlEventRepresentation.getType()== XMLStreamConstants.START_ELEMENT){
           counter++;
@@ -32,7 +32,6 @@ public class ResultBuilder {
           rootElement = buildOM(xmlEventRepresentation);
           previouseElement = rootElement;
           latestParent =rootElement;
-
       }
       if(counter>1){
            if(depth==previouseDepth+1){
@@ -45,15 +44,12 @@ public class ResultBuilder {
                omElement = buildOM(xmlEventRepresentation);
                latestParent.addChild(omElement);
                previouseElement=omElement;
-
            }
-
-
       }
       }
   }
 
-    public static OMElement sendToOutput(){
+    public  OMElement sendToOutput(){
         OMElement omElement =rootElement;
         rootElement=null;
         counter=0;
@@ -63,7 +59,7 @@ public class ResultBuilder {
         previouseDepth=0;
         return  omElement;
     }
-        public static void reset(){
+        public  void reset(){
             rootElement=null;
             counter=0;
             initialDepth=0;
@@ -73,7 +69,7 @@ public class ResultBuilder {
         }
 
 
-    private static OMElement buildOM(XMLEventRepresentation xmlEventRepresentation){
+    private  OMElement buildOM(XMLEventRepresentation xmlEventRepresentation){
        OMFactory factory = OMAbstractFactory.getOMFactory();
        String localName = xmlEventRepresentation.getLocalName();
        String value = xmlEventRepresentation.getNameValue();

@@ -38,9 +38,7 @@ public class XMLReader {
 
       }
     public static XMLReader getInstance(){
-        if(xmlReader ==null){
-            xmlReader = new XMLReader();
-        }
+        xmlReader = new XMLReader();
         return xmlReader;
     }
 

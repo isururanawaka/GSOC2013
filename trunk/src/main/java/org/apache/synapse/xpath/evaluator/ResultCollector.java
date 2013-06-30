@@ -8,21 +8,21 @@ import java.util.List;
 
 public class ResultCollector {
 
-private static List<OMElement> omElementList = new LinkedList<OMElement>();
+private  List<OMElement> omElementList = new LinkedList<OMElement>();
 
 
 
- public static void addOMElement(OMElement omElement){
+ public  void addOMElement(OMElement omElement){
      omElementList.add(omElement);
 
  }
 
 
-  public static  List<OMElement> getOmElementList(){
+  public   List<OMElement> getOmElementList(){
       return omElementList;
   }
 
-  public static void clearList(){
+  public  void clearList(){
       omElementList.clear();
   }
 
