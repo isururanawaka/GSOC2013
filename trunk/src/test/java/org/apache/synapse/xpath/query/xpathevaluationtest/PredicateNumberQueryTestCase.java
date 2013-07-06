@@ -21,11 +21,17 @@ public class  PredicateNumberQueryTestCase{
     @Test
     public void numberPredicateTest(){
 
-        String   xpathquery = "/breakfast_menu/food/name[1]";
+        String   xpathquery = "/breakfast_menu/food/name[2]";  // add support for /food/name[2] well by evaluate methos return true
+
         XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
-        xPathProcessor.xpathProcess(getOMElement());
+        OMElement omElement = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElement);
+        double endtime =System.currentTimeMillis();
         ResultCollector resultCollector = xPathProcessor.getResultCollector();
         List<OMElement> omElementList = resultCollector.getOmElementList();
+
+        System.out.println(endtime-starttime);
         OMElement omElementOne  = omElementList.get(0);
         OMElement omElementTwo = omElementList.get(1);
         Assert.assertTrue(omElementOne.getText().equals("Belgian Waffles"));

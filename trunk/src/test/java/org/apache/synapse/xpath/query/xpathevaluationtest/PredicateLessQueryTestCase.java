@@ -27,10 +27,15 @@ public void twoStepQueryTest(){
 
     String   xpathquery = "/breakfast_menu/food";
     XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
-    xPathProcessor.xpathProcess(getOMElement());
+    OMElement omElementone = getOMElement();
+    double starttime = System.currentTimeMillis();
+    xPathProcessor.xpathProcess(omElementone);
+
     ResultCollector resultCollector = xPathProcessor.getResultCollector();
     List<OMElement> omElementList = resultCollector.getOmElementList();
    // ResultCollector.clearList();
+    double  endTime =System.currentTimeMillis();
+    System.out.println(endTime -starttime);
     Assert.assertEquals(2,omElementList.size());
     OMElement parentone = omElementList.get(0);
     OMElement parenttwo = omElementList.get(1);
@@ -72,8 +77,9 @@ public void twoStepQueryTest(){
 
         String   xpathquery = "/breakfast_menu/food/name";
         double starttime = System.currentTimeMillis();
+        OMElement omElementone = getOMElement();
         XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
-        xPathProcessor.xpathProcess(getOMElement());
+         xPathProcessor.xpathProcess(omElementone);
         ResultCollector resultCollector = xPathProcessor.getResultCollector();
         List<OMElement> omElementList = resultCollector.getOmElementList();
         double  endTime =System.currentTimeMillis();

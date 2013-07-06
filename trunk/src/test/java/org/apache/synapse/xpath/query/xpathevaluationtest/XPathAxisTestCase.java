@@ -1,10 +1,11 @@
 package org.apache.synapse.xpath.query.xpathevaluationtest;
 
+
 import junit.framework.Assert;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.apache.synapse.xpath.evaluator.XPathProcessorFactory;
 import org.apache.synapse.xpath.evaluator.ResultCollector;
+import org.apache.synapse.xpath.evaluator.XPathProcessorFactory;
 import org.apache.synapse.xpath.evaluator.processor.XPathProcessor;
 import org.junit.Test;
 
@@ -15,60 +16,89 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+public class XPathAxisTestCase {
 
-public class PredicateEqualityOPQueryTestCase {
+
+
 
 
     @Test
-    public void equalityPredicateQueryTestCase(){
-        String   xpathquery = "/breakfast_menu/food[name='Belgian Waffles']";
-
+    public void absoluteandSelfAxisTestCase(){
+        String   xpathquery = "/breakfast_menu/food/self::food";
         XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
         OMElement omElementone = getOMElement();
         double starttime = System.currentTimeMillis();
         xPathProcessor.xpathProcess(omElementone);
-
         ResultCollector resultCollector = xPathProcessor.getResultCollector();
         List<OMElement> omElementList = resultCollector.getOmElementList();
         double  endTime =System.currentTimeMillis();
         System.out.println(endTime -starttime);
-        Assert.assertEquals(1,omElementList.size());
-        OMElement parent = omElementList.get(0);
-        Iterator iterator = parent.getChildElements();
-        while(iterator.hasNext()){
-           OMElement omElement= (OMElement)iterator.next();
-            if(omElement.getLocalName().equals("name")){
-                Assert.assertTrue(omElement.getText().equals("Belgian Waffles"));
-            }
-
-        }
-
-    }
-
-    @Test
-    public void notEqualityPredicateQueryTestCase(){
-
-        String   xpathquery = "/breakfast_menu/food[name!='Belgian Waffles']";
-        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
-        OMElement omElementone =  getOMElement();
-        double  start = System.currentTimeMillis();
-        xPathProcessor.xpathProcess(omElementone);
-         ResultCollector resultCollector = xPathProcessor.getResultCollector();
-        List<OMElement> omElementList = resultCollector.getOmElementList();
-        double  end = System.currentTimeMillis();
-        System.out.println((end -start));
-        Assert.assertEquals(1,omElementList.size());
+        Assert.assertEquals(2, omElementList.size());
         OMElement parent = omElementList.get(0);
         Iterator iterator = parent.getChildElements();
         while(iterator.hasNext()){
             OMElement omElement= (OMElement)iterator.next();
             if(omElement.getLocalName().equals("name")){
-                Assert.assertTrue(omElement.getText().equals("Strawberry Belgian Waffles"));
+                Assert.assertTrue(omElement.getText().equals("Belgian Waffles"));
+            } else if(omElement.getLocalName().equals("price")){
+                Assert.assertTrue(omElement.getText().equals("$5.95"));
             }
 
         }
+        OMElement parenttwo = omElementList.get(1);
+        Iterator iteratortwo = parenttwo.getChildElements();
+        while(iteratortwo.hasNext()){
+            OMElement omElement= (OMElement)iteratortwo.next();
+            if(omElement.getLocalName().equals("name")){
+                Assert.assertTrue(omElement.getText().equals("Strawberry Belgian Waffles"));
+            } else if(omElement.getLocalName().equals("price")){
+                Assert.assertTrue(omElement.getText().equals("$7.95"));
+            }
+
+        }
+    }
+
+    @Test
+    public void absoluteandChildAxisTestCase(){
+        String   xpathquery = "/breakfast_menu/food/child::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(4, omElementList.size());
 
     }
+
+    @Test
+    public void absoluteandDesecndantAxisTestCase(){
+        String   xpathquery = "/breakfast_menu/descendant::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(6, omElementList.size());
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -80,11 +110,9 @@ public class PredicateEqualityOPQueryTestCase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         OMElement omElement=null;
         try {
             omElement = new StAXOMBuilder(filePath+"/src/test/resources/reader.xml").getDocumentElement();
-
         } catch (XMLStreamException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -92,9 +120,6 @@ public class PredicateEqualityOPQueryTestCase {
         }
         return omElement;
     }
-
-
-
 
 
 }

@@ -3,6 +3,7 @@ package org.apache.synapse.xpath.evaluator.processor;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.synapse.xpath.XMLReader.XMLReader;
+import org.apache.synapse.xpath.evaluator.ResultBuilder;
 import org.apache.synapse.xpath.evaluator.ResultCollector;
 import org.apache.synapse.xpath.expression.XpathExpr;
 
@@ -12,6 +13,8 @@ public class FollowingAxisXPathProcessor implements XPathProcessor {
     private int capturingOnXMlDepth = 0;
     private String xpathQuery=null;
     private XpathExpr xpathExpr=null;
+    private ResultBuilder resultBuilder =null;
+    private ResultCollector resultCollector =null;
 
 
 
@@ -31,6 +34,6 @@ public class FollowingAxisXPathProcessor implements XPathProcessor {
 
     @Override
     public ResultCollector getResultCollector() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return resultCollector;
     }
 }

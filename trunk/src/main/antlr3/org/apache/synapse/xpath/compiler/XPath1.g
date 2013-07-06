@@ -96,7 +96,7 @@ nodeTest
 	; 
 
 nameTest 
-    : Star -> ^(ANY_NODE)
+    : Star -> ^(Star)
     | NCName Colon Star -> ^(ANY_NAMESPACED_NODE NCName)
     | qName
     ;

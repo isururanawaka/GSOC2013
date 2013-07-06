@@ -237,7 +237,7 @@ nameTest  returns [QName qname]
 @init{
     $qname =null;
 }
-:^(ANY_NODE
+:^(Star
         {$qname= new QName("","*");})
 |^(ANY_NAMESPACED_NODE b=NCName
         { $qname = new QName($b.text,"*");})

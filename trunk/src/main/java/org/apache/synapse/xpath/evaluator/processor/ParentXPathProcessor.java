@@ -9,12 +9,16 @@ import org.apache.synapse.xpath.util.PredicateProcessingUtil;
 import javax.xml.stream.XMLStreamException;
 import java.util.List;
 
+
+
 public abstract class ParentXPathProcessor{
     private XMLReader xmlReader =null;
 
     public void absoluteLocationPathProcess(DefaultAbsoluteLocationPath defaultAbsoluteLocationPath) {
         List<Step> list = defaultAbsoluteLocationPath.getSteps();
+
         stepMultiplexer(list);
+
     }
 
     public ParentXPathProcessor(XMLReader xmlReader){
@@ -27,7 +31,7 @@ public abstract class ParentXPathProcessor{
         for (int i = 0; i < stepList.size(); i++) {
             try {
                 matched = stepSelection(stepList.get(i), i, numsteps);
-                if (xmlReader.getXMLReadDepth() == stepList.size()) {
+                if (xmlReader.getXMLReadDepth() == (stepList.size())) {
                     i = 0;
                 }
             } catch (XMLStreamException e) {
@@ -41,10 +45,8 @@ public abstract class ParentXPathProcessor{
     }
 
     public boolean stepSelection(Step step, int index, int numSteps) throws XMLStreamException {
-        boolean matched = false;
         if (step instanceof DefaultNameStep){
             DefaultNameStep defaultNameStep = (DefaultNameStep) step;
-            String localName = defaultNameStep.getLocalName();
             List list = defaultNameStep.getPredicates();
             if (list.size() > 0){
                 PredicateProcessingUtil predicateProcessingUtil = predicateProcessing(list);
@@ -73,7 +75,7 @@ public abstract class ParentXPathProcessor{
         PredicateProcessingUtil predicateProcessingUtil = new PredicateProcessingUtil();
         DefaultPredicate defaultPredicate = (DefaultPredicate) predicateList.get(0);
 
-        if (defaultPredicate.getExpr() instanceof DefaultUnaryExpr) {
+        if (defaultPredicate.getExpr() instanceof DefaultUnaryExpr){
             DefaultUnaryExpr defaultUnaryExpr = (DefaultUnaryExpr) defaultPredicate.getExpr();
             if (defaultUnaryExpr.getExpr() instanceof DefaultPathExpr) {
                 DefaultPathExpr defaultPathExpr = (DefaultPathExpr) defaultUnaryExpr.getExpr();
