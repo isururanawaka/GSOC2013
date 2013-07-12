@@ -20,7 +20,6 @@ public class DescendantAxisXPathProcessor extends ParentXPathProcessor implement
     private XMLReader xmlReader;
     private boolean capturingOn = false;
     private int capturingOnXMlDepth = 0;
-    private String xpathQuery=null;
     private XpathExpr xpathExpr=null;
     private ResultBuilder resultBuilder =null;
     private ResultCollector resultCollector =null;
@@ -96,9 +95,9 @@ public class DescendantAxisXPathProcessor extends ParentXPathProcessor implement
                             return false;
                         }
                     } else if (xmlReader.getXMLReadDepth() >= index + 1) {
-                        if (localName.equals(xmlEventRepresentation.getLocalName())) {
+                        if (localName.equals(xmlEventRepresentation.getLocalName())){
                             if (predicateType == PredicateProcessingUtil.NOPREDICATE || predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-                                if (numSteps <= xmlReader.getXMLReadDepth()) {
+                                if (numSteps <= xmlReader.getXMLReadDepth()){
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
                                     resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
@@ -142,6 +141,7 @@ public class DescendantAxisXPathProcessor extends ParentXPathProcessor implement
                     xmlReader.decrementDepth();
                     if (numSteps - xmlReader.getXMLReadDepth() == 2) {
                         xmlReader.resetNumberLiteralCounter();
+                        return  true;
                     }
                     break;
             }

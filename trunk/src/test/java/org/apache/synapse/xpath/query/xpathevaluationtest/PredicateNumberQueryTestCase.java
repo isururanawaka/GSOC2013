@@ -21,7 +21,7 @@ public class  PredicateNumberQueryTestCase{
     @Test
     public void numberPredicateTest(){
 
-        String   xpathquery = "/breakfast_menu/food/name[2]";  // add support for /food/name[2] well by evaluate methos return true
+        String   xpathquery = "/breakfast_menu/food/name[1]";  // add support for /food/name[2] well by evaluate methos return true
 
         XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
         OMElement omElement = getOMElement();

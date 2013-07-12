@@ -123,7 +123,7 @@ public class DefaultXPathProcessor extends ParentXPathProcessor implements XPath
                                         capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                         capturingOn = true;
                                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-                                        return true;
+                                       // return true;
                                     }
                                 }
                             }
@@ -153,6 +153,7 @@ public class DefaultXPathProcessor extends ParentXPathProcessor implements XPath
                     xmlReader.decrementDepth();
                     if (numSteps - xmlReader.getXMLReadDepth() == 2) {
                         xmlReader.resetNumberLiteralCounter();
+                        return true;
                     }
                     break;
             }

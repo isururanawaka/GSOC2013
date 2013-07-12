@@ -138,6 +138,7 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
                     xmlReader.decrementDepth();
                     if (numSteps - xmlReader.getXMLReadDepth() == 2) {
                         xmlReader.resetNumberLiteralCounter();
+                        return true;
                     }
                     break;
             }

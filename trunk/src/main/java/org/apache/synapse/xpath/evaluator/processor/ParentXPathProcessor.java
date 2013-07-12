@@ -13,6 +13,7 @@ import java.util.List;
 
 public abstract class ParentXPathProcessor{
     private XMLReader xmlReader =null;
+    private int counter=0;
 
     public void absoluteLocationPathProcess(DefaultAbsoluteLocationPath defaultAbsoluteLocationPath) {
         List<Step> list = defaultAbsoluteLocationPath.getSteps();
@@ -31,8 +32,10 @@ public abstract class ParentXPathProcessor{
         for (int i = 0; i < stepList.size(); i++) {
             try {
                 matched = stepSelection(stepList.get(i), i, numsteps);
-                if (xmlReader.getXMLReadDepth() == (stepList.size())) {
-                    i = 0;
+               counter++;
+                if(counter == stepList.size()&& xmlReader.getXMLReadDepth()!=0){
+                   i=0;
+                   counter=0;
                 }
             } catch (XMLStreamException e) {
                 e.printStackTrace();

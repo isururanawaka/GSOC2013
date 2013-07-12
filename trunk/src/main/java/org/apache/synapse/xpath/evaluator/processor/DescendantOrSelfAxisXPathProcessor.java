@@ -20,10 +20,13 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
     private XMLReader xmlReader;
     private boolean capturingOn = false;
     private int capturingOnXMlDepth = 0;
-    private String xpathQuery=null;
     private XpathExpr xpathExpr=null;
     private ResultBuilder resultBuilder =null;
     private ResultCollector resultCollector =null;
+    private String checkingName;
+    private String bufferedName;
+    private int counter=0;
+    private boolean twostep=false;
 
 
     public DescendantOrSelfAxisXPathProcessor(XpathExpr xpathExpr,XMLReader xmlReader){
@@ -53,6 +56,17 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
     public boolean evaluate(Step step, int index, int numSteps, int predicateType, PredicateProcessingUtil predicateProcessingUtil) throws XMLStreamException {
         DefaultNameStep defaultNameStep = (DefaultNameStep) step;
         String localName = defaultNameStep.getLocalName();
+        if(index+1==numSteps){
+            checkingName = localName;
+            counter++;
+            if(counter==1&& !(checkingName.equals(bufferedName)||checkingName.equals("*"))){
+                resultBuilder.reset();
+                capturingOn=false;
+            }
+        }
+        if((index+1)== (numSteps-1)){
+            bufferedName = localName;
+        }
         while (xmlReader.hasNextEvent()){
             XMLEventRepresentation xmlEventRepresentation = xmlReader.getnextEvent();
             switch (xmlEventRepresentation.getType()) {
@@ -83,36 +97,13 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
 //                            }
 //                        }
                     }
-                    if (xmlReader.getStepCounter() == 1 && index == 0) {
-                        if (localName.equals(xmlEventRepresentation.getLocalName())) {
-                            if (numSteps == 1) {
-                                OMElement omElement = xmlReader.getOmElement();
-                                addDescendant(omElement);
-
-
-                            }
-
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else if (xmlReader.getXMLReadDepth() == index + 1) {
-                        if (localName.equals(xmlEventRepresentation.getLocalName())||localName.equals("*")) {
+                    if (xmlReader.getXMLReadDepth() >= index + 1) {
+                        if (localName.equals(xmlEventRepresentation.getLocalName())){
                             if (predicateType == PredicateProcessingUtil.NOPREDICATE || predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-                                if (numSteps == xmlReader.getXMLReadDepth()) {
+                                if ((numSteps-1) <= xmlReader.getXMLReadDepth()){
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
                                     resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-                                }
-                            } else if (predicateType == PredicateProcessingUtil.NUMBERLITERALPREDICATE) {
-                                xmlReader.incrementNumberLiteralCounter();
-                                if (xmlReader.getNumberLiteralCounter() == predicateProcessingUtil.getValue()) {
-                                    if (numSteps == xmlReader.getXMLReadDepth()) {
-                                        capturingOnXMlDepth = xmlReader.getXMLReadDepth();
-                                        capturingOn = true;
-                                        resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-                                        return true;
-                                    }
                                 }
                             }
                             if(index+1 ==numSteps){
@@ -121,15 +112,25 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
                                 return true;
                             }
 
-                        } else {
+                        }else if(checkingName !=null && checkingName.equals("*") ){
+                            if (predicateType == PredicateProcessingUtil.NOPREDICATE ) {
+                                if ((numSteps-1) == xmlReader.getXMLReadDepth() && !capturingOn) {
+                                    capturingOnXMlDepth = xmlReader.getXMLReadDepth();
+                                    capturingOn = true;
+                                    resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
+                                    continue;
+                                }
+                            }
+                        }
+
+
+                        else {
 
                             continue;
                         }
                     } else if (xmlReader.getXMLReadDepth() > index + 1) {
                         continue;
-                    } //else if (index > 0 && xmlReader.getXMLReadDepth() == index) {
-//                        return false;
-//                    }
+                    }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     if (capturingOn && capturingOnXMlDepth == xmlReader.getXMLReadDepth()) {
@@ -143,6 +144,7 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
                     xmlReader.decrementDepth();
                     if (numSteps - xmlReader.getXMLReadDepth() == 2) {
                         xmlReader.resetNumberLiteralCounter();
+                        return true;
                     }
                     break;
             }
@@ -152,11 +154,15 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
     }
     private void addDescendant(OMElement omElement){
         Iterator iterator = omElement.getDescendants(true);
-        while(iterator.hasNext()){
-            Object object =iterator.next();
-            if(object instanceof OMElement){
-                resultCollector.addOMElement((OMElement)object);
+        if(checkingName.equals("*")){
+            while(iterator.hasNext()){
+                Object object =iterator.next();
+                if(object instanceof OMElement){
+                    resultCollector.addOMElement((OMElement)object);
+                }
             }
+        }else{
+            resultCollector.addOMElement(omElement);
         }
     }
 

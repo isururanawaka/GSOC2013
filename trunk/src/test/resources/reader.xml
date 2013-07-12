@@ -9,4 +9,8 @@
         <name>Strawberry Belgian Waffles</name>
         <price>$7.95</price>
     </food>
+    <good>
+        <name>Strawberry Belgian Waffles</name>
+        <price>$7.95</price>
+    </good>
 </breakfast_menu>

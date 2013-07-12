@@ -7,7 +7,9 @@ import org.apache.synapse.xpath.util.NameSpaceUtil;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamConstants;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,8 +19,10 @@ public class ResultBuilder {
   private   OMElement previouseElement;
   private  OMElement latestParent;
   private  int initialDepth;
+    private int maxdepth=0;
   private  int previouseDepth;
   private  int counter=0;
+  private List<OMElement> parentStack = new ArrayList<OMElement>();
 
 
   public  void createOM(XMLEventRepresentation xmlEventRepresentation,int depth){
@@ -32,6 +36,7 @@ public class ResultBuilder {
           rootElement = buildOM(xmlEventRepresentation);
           previouseElement = rootElement;
           latestParent =rootElement;
+          maxdepth =depth;
       }
       if(counter>1){
            if(depth==previouseDepth+1){
@@ -40,11 +45,29 @@ public class ResultBuilder {
                latestParent = previouseElement;
                previouseDepth =depth;
                previouseElement = omElement;
+               if(maxdepth<depth){
+               parentStack.add(latestParent);
+               maxdepth =depth;
+               }
            }else if(previouseDepth==depth){
                omElement = buildOM(xmlEventRepresentation);
                latestParent.addChild(omElement);
                previouseElement=omElement;
+           }else if(previouseDepth>depth){
+               int diffrence = previouseDepth-depth;
+               OMElement temp = parentStack.get((parentStack.size()-diffrence)-1);
+               omElement =buildOM(xmlEventRepresentation);
+               temp.addChild(omElement);
+               int pos =(parentStack.size()-diffrence)-1;
+               parentStack.remove((parentStack.size()-diffrence)-1);
+
+               parentStack.add(pos,temp);
+               latestParent =temp;
+               previouseElement = omElement;
+               previouseDepth =depth;
+
            }
+
       }
       }
   }
@@ -57,6 +80,8 @@ public class ResultBuilder {
         previouseElement=null;
         latestParent=null;
         previouseDepth=0;
+        maxdepth=0;
+        parentStack.clear();
         return  omElement;
     }
         public  void reset(){
@@ -66,6 +91,8 @@ public class ResultBuilder {
             previouseElement=null;
             latestParent=null;
             previouseDepth=0;
+            maxdepth=0;
+            parentStack.clear();
         }
 
 

@@ -84,13 +84,26 @@ public class XPathAxisTestCase {
         List<OMElement> omElementList = resultCollector.getOmElementList();
         double  endTime =System.currentTimeMillis();
         System.out.println(endTime -starttime);
-        Assert.assertEquals(6, omElementList.size());
+        Assert.assertEquals(9, omElementList.size());
 
     }
 
 
 
+    @Test
+    public void absoluteandDesecndantOrSelfAxisTestCase(){
+        String   xpathquery = "/breakfast_menu/descendant-or-self::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(10, omElementList.size());
 
+    }
 
 
 
