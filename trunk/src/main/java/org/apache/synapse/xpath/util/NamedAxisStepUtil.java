@@ -4,13 +4,7 @@ import org.apache.synapse.xpath.expression.axis.Axis;
 
 import javax.xml.namespace.QName;
 
-/**
- * Created by IntelliJ IDEA.
- * User: isuru
- * Date: 5/5/13
- * Time: 7:31 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class NamedAxisStepUtil {
 
     private String value;

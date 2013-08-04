@@ -7,13 +7,7 @@ import org.apache.synapse.xpath.util.NameSpaceUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 5/17/13
- * Time: 11:56 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class XMLEventRepresentation{
 
  private String nameValue;

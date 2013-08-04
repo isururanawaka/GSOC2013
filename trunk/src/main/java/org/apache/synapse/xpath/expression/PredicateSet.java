@@ -6,13 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/13/13
- * Time: 7:52 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class PredicateSet implements Serializable {
 
     private static final long serialVersionUID = -7166491740228977853L;

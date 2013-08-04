@@ -11,9 +11,11 @@ import org.apache.synapse.xpath.expression.DefaultNameStep;
 import org.apache.synapse.xpath.expression.Step;
 import org.apache.synapse.xpath.expression.XpathExpr;
 import org.apache.synapse.xpath.util.PredicateProcessingUtil;
+import org.apache.synapse.xpath.util.XPathProcessingConstants;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
 public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPathProcessor {
     private XMLReader xmlReader;
@@ -37,10 +39,16 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
 
     @Override
     public void xpathProcess(OMElement omElement) {
-        xmlReader.setXmlStreamReader(omElement);
+        xmlReader.setXMLStreamReader(omElement);
         DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
         absoluteLocationPathProcess(locationPath);
 
+    }
+    @Override
+    public void xpathProcess(XMLStreamReader xmlStreamReader) {
+        xmlReader.setXMLStreamReader(xmlStreamReader);
+        DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
+        absoluteLocationPathProcess(locationPath);
     }
 
     @Override
@@ -64,27 +72,10 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
                         capturingOn = false;
                     }else if (capturingOn && capturingOnXMlDepth < xmlReader.getXMLReadDepth()){
                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-//                        if (predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-//                            if (xmlEventRepresentation.getLocalName().equals(predicateProcessingUtil.getLhs())) {
-//                                String value = xmlEventRepresentation.getNameValue();
-//                                String formattedString = "'" + value + "'";
-//                                if (predicateType == PredicateProcessingUtil.EQUALPREDICATE) {
-//                                    if (!formattedString.equals(predicateProcessingUtil.getRhs())) {
-//                                        resultBuilder.reset();
-//                                        capturingOn = false;
-//                                    }
-//                                } else if (predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-//                                    if (formattedString.equals(predicateProcessingUtil.getRhs())) {
-//                                        resultBuilder.reset();
-//                                        capturingOn = false;
-//                                    }
-//                                }
-//                            }
-//                        }
                     }
-                    if (xmlReader.getStepCounter() == 1 && index == 0) {
+                    if (xmlReader.getStepCounter() == XPathProcessingConstants.OFFSET_ONE  && index == XPathProcessingConstants.COUNTER_ZERO) {
                         if (localName.equals(xmlEventRepresentation.getLocalName())) {
-                            if (numSteps == 1) {
+                            if (numSteps == XPathProcessingConstants.OFFSET_ONE ) {
                                 resultCollector.addOMElement(xmlReader.getOmElement());
 
                             }
@@ -93,25 +84,17 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
                         } else {
                             return false;
                         }
-                    } else if (xmlReader.getXMLReadDepth() == index + 1) {
-                        if (localName.equals(xmlEventRepresentation.getLocalName())||localName.equals("*")) {
-                            if (predicateType == PredicateProcessingUtil.NOPREDICATE || predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
+                    } else if (xmlReader.getXMLReadDepth() == index + XPathProcessingConstants.OFFSET_ONE ) {
+                        if (localName.equals(xmlEventRepresentation.getLocalName())||localName.equals(XPathProcessingConstants.ALL)) {
+
                                 if (numSteps == xmlReader.getXMLReadDepth()) {
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
-                                    resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
+                                   resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
+
                                 }
-                            } else if (predicateType == PredicateProcessingUtil.NUMBERLITERALPREDICATE) {
-                                xmlReader.incrementNumberLiteralCounter();
-                                if (xmlReader.getNumberLiteralCounter() == predicateProcessingUtil.getValue()) {
-                                    if (numSteps == xmlReader.getXMLReadDepth()) {
-                                        capturingOnXMlDepth = xmlReader.getXMLReadDepth();
-                                        capturingOn = true;
-                                        resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-                                    }
-                                }
-                            }
-                            if(localName.equals("*")&& xmlReader.getXMLReadDepth()==numSteps){
+
+                            if(localName.equals(XPathProcessingConstants.ALL)&& xmlReader.getXMLReadDepth()==numSteps){
                                 continue;
                             } else{
                                 return true;
@@ -121,11 +104,9 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
 
                             continue;
                         }
-                    } else if (xmlReader.getXMLReadDepth() > index + 1) {
+                    } else if (xmlReader.getXMLReadDepth() > index + XPathProcessingConstants.OFFSET_ONE) {
                         continue;
-                    } //else if (index > 0 && xmlReader.getXMLReadDepth() == index) {
-//                        return false;
-//                    }
+                    }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     if (capturingOn && capturingOnXMlDepth == xmlReader.getXMLReadDepth()) {
@@ -136,7 +117,7 @@ public class ChildAxisXPathProcessor extends ParentXPathProcessor implements XPa
                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                     }
                     xmlReader.decrementDepth();
-                    if (numSteps - xmlReader.getXMLReadDepth() == 2) {
+                    if (numSteps - xmlReader.getXMLReadDepth() == XPathProcessingConstants.PARENT_EXIT_VALUE) {
                         xmlReader.resetNumberLiteralCounter();
                         return true;
                     }

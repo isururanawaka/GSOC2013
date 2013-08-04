@@ -1,12 +1,6 @@
 package org.apache.synapse.xpath.expression;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/19/13
- * Time: 12:07 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class DefaultNotEqualsExpr extends DefaultEqualityExpr{
   public   DefaultNotEqualsExpr( Expr lhs, Expr rhs )
     {

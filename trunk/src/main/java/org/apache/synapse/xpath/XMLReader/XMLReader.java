@@ -23,16 +23,6 @@ public class XMLReader {
     private OMElement omElement =null;
 
 
-//    private XMLReader(String fileName) {
-//        XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
-//        try {
-//            xmlStreamReader = xmlInputFactory.createXMLStreamReader(new FileReader(fileName));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
       private XMLReader(){
 
 
@@ -85,9 +75,12 @@ public class XMLReader {
     public XMLEventRepresentation getnextEvent() throws XMLStreamException {
         return processReading();
     }
-    public void setXmlStreamReader(OMElement omElement){
+    public void setXMLStreamReader(OMElement omElement){
      xmlStreamReader = omElement.getXMLStreamReader();
         this.omElement = omElement;
+    }
+    public void setXMLStreamReader(XMLStreamReader xmlStreamReader){
+        this.xmlStreamReader = xmlStreamReader;
     }
 
     private XMLEventRepresentation processReading() throws XMLStreamException {

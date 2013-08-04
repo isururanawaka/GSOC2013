@@ -7,13 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/19/13
- * Time: 11:54 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class DefaultNameStep extends DefaultStep implements NameStep {
 
 

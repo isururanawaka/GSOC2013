@@ -5,8 +5,12 @@
 		<name>Belgian Waffles</name>
 		<price>$5.95</price>
 	</food>
-    <food>
+    <food brand="srilankan">
         <name>Strawberry Belgian Waffles</name>
         <price>$7.95</price>
     </food>
+    <drink>
+        <name>smack</name>
+        <price>$7.00</price>
+    </drink>
 </breakfast_menu>

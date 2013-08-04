@@ -1,4 +1,4 @@
-// $ANTLR 3.4 org/apache/synapse/xpath/compiler/XPath1Walker.g 2013-06-15 10:20:40
+// $ANTLR 3.4 org/apache/synapse/xpath/compiler/XPath1Walker.g 2013-07-19 08:05:15
 
 	package org.apache.synapse.xpath.compiler;
     import org.apache.synapse.xpath.expression.axis.*;
@@ -212,6 +212,7 @@ public class XPath1Walker extends TreeParser {
             case NameSpacedQNAME:
             case ProcessingInstruction:
             case QNAME_PREDICATE:
+            case Star:
                 {
                 alt1=1;
                 }
@@ -476,6 +477,7 @@ public class XPath1Walker extends TreeParser {
             case NameSpacedQNAME:
             case ProcessingInstruction:
             case QNAME_PREDICATE:
+            case Star:
                 {
                 alt3=3;
                 }
@@ -669,6 +671,7 @@ public class XPath1Walker extends TreeParser {
                     case NCName:
                     case NameSpacedQNAME:
                     case ProcessingInstruction:
+                    case Star:
                         {
                         alt4=1;
                         }
@@ -706,6 +709,7 @@ public class XPath1Walker extends TreeParser {
             case NCName:
             case NameSpacedQNAME:
             case ProcessingInstruction:
+            case Star:
                 {
                 alt4=2;
                 }
@@ -744,7 +748,7 @@ public class XPath1Walker extends TreeParser {
                                                        temp = utiltemp.getValue();
 
                                                     if(axis == null){
-                                                          axis = new ChildAxis(AxisUtil.CHILD);
+                                                          axis = new ChildAxis(AxisUtil.CHILD,true);
                                                     }
 
                                                      if(temp==null){
@@ -791,7 +795,7 @@ public class XPath1Walker extends TreeParser {
                                                        temp = utiltemp.getValue();
 
                                                     if(axis == null){
-                                                          axis = new ChildAxis(AxisUtil.CHILD);
+                                                          axis = new ChildAxis(AxisUtil.CHILD,true);
                                                     }
 
                                                      if(temp==null){
@@ -950,6 +954,7 @@ public class XPath1Walker extends TreeParser {
             case NCName:
             case NameSpacedQNAME:
             case ProcessingInstruction:
+            case Star:
                 {
                 alt5=2;
                 }
@@ -1124,49 +1129,17 @@ public class XPath1Walker extends TreeParser {
             // org/apache/synapse/xpath/compiler/XPath1Walker.g:222:3: ( nameTest | ^( ANY_NODE a= NodeType ) | ^( ProcessingInstruction LeftParenthesis b= StringLiteral RightParenthesis ) )
             int alt7=3;
             switch ( input.LA(1) ) {
-            case ANY_NODE:
-                {
-                switch ( input.LA(2) ) {
-                case DOWN:
-                    {
-                    switch ( input.LA(3) ) {
-                    case NodeType:
-                        {
-                        alt7=2;
-                        }
-                        break;
-                    case UP:
-                        {
-                        alt7=1;
-                        }
-                        break;
-                    default:
-                        if (state.backtracking>0) {state.failed=true; return stepUtil;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 7, 4, input);
-
-                        throw nvae;
-
-                    }
-
-                    }
-                    break;
-                default:
-                    if (state.backtracking>0) {state.failed=true; return stepUtil;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 7, 1, input);
-
-                    throw nvae;
-
-                }
-
-                }
-                break;
             case ANY_NAMESPACED_NODE:
             case NCName:
             case NameSpacedQNAME:
+            case Star:
                 {
                 alt7=1;
+                }
+                break;
+            case ANY_NODE:
+                {
+                alt7=2;
                 }
                 break;
             case ProcessingInstruction:
@@ -1257,7 +1230,7 @@ public class XPath1Walker extends TreeParser {
 
 
     // $ANTLR start "nameTest"
-    // org/apache/synapse/xpath/compiler/XPath1Walker.g:236:1: nameTest returns [QName qname] : ( ^( ANY_NODE ) | ^( ANY_NAMESPACED_NODE b= NCName ) | qName );
+    // org/apache/synapse/xpath/compiler/XPath1Walker.g:236:1: nameTest returns [QName qname] : ( ^( Star ) | ^( ANY_NAMESPACED_NODE b= NCName ) | qName );
     public final QName nameTest() throws RecognitionException {
         QName qname = null;
 
@@ -1270,10 +1243,10 @@ public class XPath1Walker extends TreeParser {
             qname =null;
 
         try {
-            // org/apache/synapse/xpath/compiler/XPath1Walker.g:240:2: ( ^( ANY_NODE ) | ^( ANY_NAMESPACED_NODE b= NCName ) | qName )
+            // org/apache/synapse/xpath/compiler/XPath1Walker.g:240:2: ( ^( Star ) | ^( ANY_NAMESPACED_NODE b= NCName ) | qName )
             int alt8=3;
             switch ( input.LA(1) ) {
-            case ANY_NODE:
+            case Star:
                 {
                 alt8=1;
                 }
@@ -1300,9 +1273,9 @@ public class XPath1Walker extends TreeParser {
 
             switch (alt8) {
                 case 1 :
-                    // org/apache/synapse/xpath/compiler/XPath1Walker.g:240:2: ^( ANY_NODE )
+                    // org/apache/synapse/xpath/compiler/XPath1Walker.g:240:2: ^( Star )
                     {
-                    match(input,ANY_NODE,FOLLOW_ANY_NODE_in_nameTest692); if (state.failed) return qname;
+                    match(input,Star,FOLLOW_Star_in_nameTest692); if (state.failed) return qname;
 
                     if ( state.backtracking==0 ) {qname = new QName("","*");}
 
@@ -1707,31 +1680,12 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
                 {
                 alt11=1;
                 }
                 break;
             case FILTER:
-                {
-                int LA11_12 = input.LA(2);
-
-                if ( (synpred18_XPath1Walker()) ) {
-                    alt11=2;
-                }
-                else if ( (true) ) {
-                    alt11=3;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return expr;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 11, 12, input);
-
-                    throw nvae;
-
-                }
-                }
-                break;
-            case LeftParenthesis:
                 {
                 int LA11_13 = input.LA(2);
 
@@ -1751,7 +1705,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case StringLiteral:
+            case LeftParenthesis:
                 {
                 int LA11_14 = input.LA(2);
 
@@ -1771,7 +1725,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case IntegerLiteral:
+            case StringLiteral:
                 {
                 int LA11_15 = input.LA(2);
 
@@ -1791,7 +1745,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case DecimalLiteral:
+            case IntegerLiteral:
                 {
                 int LA11_16 = input.LA(2);
 
@@ -1811,7 +1765,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case DoubleLiteral:
+            case DecimalLiteral:
                 {
                 int LA11_17 = input.LA(2);
 
@@ -1831,7 +1785,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case VariableReference:
+            case DoubleLiteral:
                 {
                 int LA11_18 = input.LA(2);
 
@@ -1851,7 +1805,7 @@ public class XPath1Walker extends TreeParser {
                 }
                 }
                 break;
-            case FUNCALL:
+            case VariableReference:
                 {
                 int LA11_19 = input.LA(2);
 
@@ -1865,6 +1819,26 @@ public class XPath1Walker extends TreeParser {
                     if (state.backtracking>0) {state.failed=true; return expr;}
                     NoViableAltException nvae =
                         new NoViableAltException("", 11, 19, input);
+
+                    throw nvae;
+
+                }
+                }
+                break;
+            case FUNCALL:
+                {
+                int LA11_20 = input.LA(2);
+
+                if ( (synpred18_XPath1Walker()) ) {
+                    alt11=2;
+                }
+                else if ( (true) ) {
+                    alt11=3;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return expr;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 11, 20, input);
 
                     throw nvae;
 
@@ -2352,6 +2326,7 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
             case StringLiteral:
             case VariableReference:
             case 62:
@@ -2509,6 +2484,7 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
             case StringLiteral:
             case VariableReference:
             case 62:
@@ -2666,6 +2642,7 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
             case StringLiteral:
             case VariableReference:
             case 62:
@@ -3251,6 +3228,7 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
             case StringLiteral:
             case VariableReference:
                 {
@@ -3357,6 +3335,7 @@ public class XPath1Walker extends TreeParser {
             case RELATIVELOC:
             case RecursiveAxisStep:
             case SingleAxisStep:
+            case Star:
             case StringLiteral:
             case VariableReference:
                 {
@@ -3835,17 +3814,17 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_absoluteLocationPath_in_locationPath94 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath116 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RELATIVELOC_in_absoluteLocationPath120 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath122 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath122 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPath_in_absoluteLocationPath125 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_RecursiveAxisStep_in_absoluteLocationPath131 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_relativeLocationPath_in_absoluteLocationPath133 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath144 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath144 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPath_in_abbreviatedAbsoluteLocationPath146 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_SingleAxisStep_in_relativeLocationPath165 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_step_in_relativeLocationPath167 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_step_in_relativeLocationPath167 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath179 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_RecursiveAxisStep_in_relativeLocationPath186 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_step_in_relativeLocationPath188 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_step_in_relativeLocationPath188 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath201 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_step_in_relativeLocationPath207 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_relativeLocationPath_in_relativeLocationPathrec231 = new BitSet(new long[]{0x0000000000000002L});
@@ -3860,7 +3839,7 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_ABBREVIATED_AXIS_STEP_in_abbreviatedAxisStep473 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_AbbreviatedStep_in_abbreviatedAxisStep479 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_NAMED_AXIS_STEP_in_namedAxisStep537 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_axisSpecifier_in_namedAxisStep540 = new BitSet(new long[]{0x0000040A000000C0L});
+    public static final BitSet FOLLOW_axisSpecifier_in_namedAxisStep540 = new BitSet(new long[]{0x0040040A000000C0L});
     public static final BitSet FOLLOW_nodeTest_in_namedAxisStep544 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_nodeTest_in_namedAxisStep550 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_NAME_AXIS_in_axisSpecifier569 = new BitSet(new long[]{0x0000000000000004L});
@@ -3874,7 +3853,7 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_LeftParenthesis_in_nodeTest666 = new BitSet(new long[]{0x0080000000000000L});
     public static final BitSet FOLLOW_StringLiteral_in_nodeTest670 = new BitSet(new long[]{0x0002000000000000L});
     public static final BitSet FOLLOW_RightParenthesis_in_nodeTest673 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ANY_NODE_in_nameTest692 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_Star_in_nameTest692 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ANY_NAMESPACED_NODE_in_nameTest707 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_NCName_in_nameTest711 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_qName_in_nameTest725 = new BitSet(new long[]{0x0000000000000002L});
@@ -3891,7 +3870,7 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_expr_in_exprrec982 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_locationPath_in_pathExpr1017 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_filterExpr_in_pathExpr1031 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_simpleAxisStep_in_pathExpr1034 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_simpleAxisStep_in_pathExpr1034 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPath_in_pathExpr1038 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_filterExpr_in_pathExpr1051 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_SingleAxisStep_in_simpleAxisStep1094 = new BitSet(new long[]{0x0000000000000004L});
@@ -3900,24 +3879,24 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_primaryExpr_in_filterExpr1148 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_predicate_in_filterExpr1173 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_primaryExpr_in_filterExpr1201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LeftParenthesis_in_primaryExpr1245 = new BitSet(new long[]{0x50A0B64A85E610D0L});
+    public static final BitSet FOLLOW_LeftParenthesis_in_primaryExpr1245 = new BitSet(new long[]{0x50E0B64A85E610D0L});
     public static final BitSet FOLLOW_expr_in_primaryExpr1247 = new BitSet(new long[]{0x0002000000000000L});
     public static final BitSet FOLLOW_RightParenthesis_in_primaryExpr1277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_primaryExpr1290 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_functionCall_in_primaryExpr1305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_orExpr_in_expr1358 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Or_in_orExpr1386 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr1388 = new BitSet(new long[]{0x50A0B64A85E610D0L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr1388 = new BitSet(new long[]{0x50E0B64A85E610D0L});
     public static final BitSet FOLLOW_orExprrec_in_orExpr1390 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_andExpr_in_orExpr1404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_orExpr_in_orExprrec1424 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_And_in_andExpr1446 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_equalityExpr_in_andExpr1448 = new BitSet(new long[]{0x50A0B60A85E610D0L});
+    public static final BitSet FOLLOW_equalityExpr_in_andExpr1448 = new BitSet(new long[]{0x50E0B60A85E610D0L});
     public static final BitSet FOLLOW_andExprrec_in_andExpr1450 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_equalityExpr_in_andExpr1463 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_andExpr_in_andExprrec1483 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_EqualityOp_in_equalityExpr1508 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1510 = new BitSet(new long[]{0x50A0B60A85E600D0L});
+    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1510 = new BitSet(new long[]{0x50E0B60A85E600D0L});
     public static final BitSet FOLLOW_equalityExprrec_in_equalityExpr1512 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1570 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_equalityExpr_in_equalityExprrec1590 = new BitSet(new long[]{0x0000000000000002L});
@@ -3934,10 +3913,10 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_unaryExprrec_in_multiplicativeExpr1733 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_unaryExpr_in_unaryExprrec1755 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_unionExpr_in_unaryExpr1778 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_unaryExpr1787 = new BitSet(new long[]{0x50A0B60A85C600D0L});
+    public static final BitSet FOLLOW_62_in_unaryExpr1787 = new BitSet(new long[]{0x50E0B60A85C600D0L});
     public static final BitSet FOLLOW_unaryExpr_in_unaryExpr1789 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Pipe_in_unionExpr1819 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_pathExpr_in_unionExpr1821 = new BitSet(new long[]{0x10A0B60A85C600D0L});
+    public static final BitSet FOLLOW_pathExpr_in_unionExpr1821 = new BitSet(new long[]{0x10E0B60A85C600D0L});
     public static final BitSet FOLLOW_unionExprrec_in_unionExpr1823 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_pathExpr_in_unionExpr1832 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_unionExpr_in_unionExprrec1856 = new BitSet(new long[]{0x0000000000000002L});
@@ -3953,7 +3932,7 @@ public class XPath1Walker extends TreeParser {
     public static final BitSet FOLLOW_NCName_in_qName2029 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_relativeLocationPath_in_synpred1_XPath1Walker84 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_filterExpr_in_synpred18_XPath1Walker1031 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_simpleAxisStep_in_synpred18_XPath1Walker1034 = new BitSet(new long[]{0x0020940A800000D0L});
+    public static final BitSet FOLLOW_simpleAxisStep_in_synpred18_XPath1Walker1034 = new BitSet(new long[]{0x0060940A800000D0L});
     public static final BitSet FOLLOW_relativeLocationPath_in_synpred18_XPath1Walker1038 = new BitSet(new long[]{0x0000000000000002L});
 
 }

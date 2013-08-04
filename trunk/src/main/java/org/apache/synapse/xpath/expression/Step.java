@@ -3,13 +3,7 @@ package org.apache.synapse.xpath.expression;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/9/13
- * Time: 2:31 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public interface Step extends Predicated{
 
 

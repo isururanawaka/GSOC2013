@@ -5,13 +5,7 @@ import org.apache.synapse.xpath.util.AxisUtil;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/18/13
- * Time: 6:26 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public abstract class DefaultStep implements Step{
     private Axis axis;
     private PredicateSet predicates;

@@ -1,12 +1,6 @@
 package org.apache.synapse.xpath.util;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 6/3/13
- * Time: 7:18 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class PredicateProcessingUtil {
     public static final int NUMBERLITERALPREDICATE=1;
     public static final int EQUALPREDICATE=2;

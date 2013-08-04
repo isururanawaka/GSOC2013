@@ -9,6 +9,7 @@ import org.apache.synapse.xpath.expression.DefaultNameStep;
 import org.apache.synapse.xpath.expression.Step;
 import org.apache.synapse.xpath.expression.XpathExpr;
 import org.apache.synapse.xpath.expression.axis.*;
+import org.apache.synapse.xpath.util.XPathProcessingConstants;
 
 import java.util.List;
 
@@ -34,8 +35,6 @@ public class XPathProcessorFactory {
            return  new FollowingAxisXPathProcessor(xPathExpr,XMLReader.getInstance());
     }else if(axis instanceof  FollowingSiblingAxis){
            return new FollowingSiblingAxisXPathProcessor(xPathExpr,XMLReader.getInstance());
-    }else if(axis instanceof NamespaceAxis){
-           return  new NameSpaceAxisXPathProcessor(xPathExpr,XMLReader.getInstance());
     } else if(axis instanceof  SelfAxis){
            return  new SelfAxisXPathProcessor(xPathExpr,XMLReader.getInstance());
     }
@@ -50,7 +49,7 @@ public class XPathProcessorFactory {
       List<Step> stepList =locationPath.getSteps();
       int numSteps = stepList.size();
       //check only for last step initially
-      Step step =  stepList.get(numSteps-1);
+      Step step =  stepList.get(numSteps- XPathProcessingConstants.OFFSET_ONE);
       if(step instanceof DefaultNameStep){
           DefaultNameStep defaultNameStep = (DefaultNameStep)step;
           axis = defaultNameStep.getIterableAxis();

@@ -11,9 +11,11 @@ import org.apache.synapse.xpath.expression.DefaultNameStep;
 import org.apache.synapse.xpath.expression.Step;
 import org.apache.synapse.xpath.expression.XpathExpr;
 import org.apache.synapse.xpath.util.PredicateProcessingUtil;
+import org.apache.synapse.xpath.util.XPathProcessingConstants;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.util.Iterator;
 
 public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor implements XPathProcessor {
@@ -40,11 +42,17 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
 
     @Override
     public void xpathProcess(OMElement omElement) {
-        xmlReader.setXmlStreamReader(omElement);
+        xmlReader.setXMLStreamReader(omElement);
         DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
         absoluteLocationPathProcess(locationPath);
 
 
+    }
+    @Override
+    public void xpathProcess(XMLStreamReader xmlStreamReader) {
+        xmlReader.setXMLStreamReader(xmlStreamReader);
+        DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
+        absoluteLocationPathProcess(locationPath);
     }
 
     @Override
@@ -56,15 +64,15 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
     public boolean evaluate(Step step, int index, int numSteps, int predicateType, PredicateProcessingUtil predicateProcessingUtil) throws XMLStreamException {
         DefaultNameStep defaultNameStep = (DefaultNameStep) step;
         String localName = defaultNameStep.getLocalName();
-        if(index+1==numSteps){
+        if(index+ XPathProcessingConstants.OFFSET_ONE==numSteps){
             checkingName = localName;
             counter++;
-            if(counter==1&& !(checkingName.equals(bufferedName)||checkingName.equals("*"))){
+            if(counter==1&& !(checkingName.equals(bufferedName)||checkingName.equals(XPathProcessingConstants.ALL))){
                 resultBuilder.reset();
                 capturingOn=false;
             }
         }
-        if((index+1)== (numSteps-1)){
+        if((index+XPathProcessingConstants.OFFSET_ONE)== (numSteps-XPathProcessingConstants.OFFSET_ONE)){
             bufferedName = localName;
         }
         while (xmlReader.hasNextEvent()){
@@ -79,42 +87,25 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
                         capturingOn = false;
                     }else if (capturingOn && capturingOnXMlDepth < xmlReader.getXMLReadDepth()){
                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
-//                        if (predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-//                            if (xmlEventRepresentation.getLocalName().equals(predicateProcessingUtil.getLhs())) {
-//                                String value = xmlEventRepresentation.getNameValue();
-//                                String formattedString = "'" + value + "'";
-//                                if (predicateType == PredicateProcessingUtil.EQUALPREDICATE) {
-//                                    if (!formattedString.equals(predicateProcessingUtil.getRhs())) {
-//                                        resultBuilder.reset();
-//                                        capturingOn = false;
-//                                    }
-//                                } else if (predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-//                                    if (formattedString.equals(predicateProcessingUtil.getRhs())) {
-//                                        resultBuilder.reset();
-//                                        capturingOn = false;
-//                                    }
-//                                }
-//                            }
-//                        }
-                    }
-                    if (xmlReader.getXMLReadDepth() >= index + 1) {
+               }
+                    if (xmlReader.getXMLReadDepth() >= index + XPathProcessingConstants.OFFSET_ONE) {
                         if (localName.equals(xmlEventRepresentation.getLocalName())){
                             if (predicateType == PredicateProcessingUtil.NOPREDICATE || predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-                                if ((numSteps-1) <= xmlReader.getXMLReadDepth()){
+                                if ((numSteps-XPathProcessingConstants.OFFSET_ONE) <= xmlReader.getXMLReadDepth()){
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
                                     resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                                 }
                             }
-                            if(index+1 ==numSteps){
+                            if(index+XPathProcessingConstants.OFFSET_ONE ==numSteps){
                                 continue;
                             }  else{
                                 return true;
                             }
 
-                        }else if(checkingName !=null && checkingName.equals("*") ){
+                        }else if(checkingName !=null && checkingName.equals(XPathProcessingConstants.ALL) && localName.equals(xmlEventRepresentation.getLocalName()) ){
                             if (predicateType == PredicateProcessingUtil.NOPREDICATE ) {
-                                if ((numSteps-1) == xmlReader.getXMLReadDepth() && !capturingOn) {
+                                if ((numSteps-XPathProcessingConstants.OFFSET_ONE) == xmlReader.getXMLReadDepth() && !capturingOn) {
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
                                     resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
@@ -128,7 +119,7 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
 
                             continue;
                         }
-                    } else if (xmlReader.getXMLReadDepth() > index + 1) {
+                    } else if (xmlReader.getXMLReadDepth() > index + XPathProcessingConstants.OFFSET_ONE) {
                         continue;
                     }
                     break;
@@ -142,8 +133,7 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                     }
                     xmlReader.decrementDepth();
-                    if (numSteps - xmlReader.getXMLReadDepth() == 2) {
-                        xmlReader.resetNumberLiteralCounter();
+                    if ((numSteps) - xmlReader.getXMLReadDepth() == XPathProcessingConstants.PARENT_EXIT_VALUE) {
                         return true;
                     }
                     break;
@@ -154,7 +144,7 @@ public class DescendantOrSelfAxisXPathProcessor extends ParentXPathProcessor imp
     }
     private void addDescendant(OMElement omElement){
         Iterator iterator = omElement.getDescendants(true);
-        if(checkingName.equals("*")){
+        if(checkingName.equals(XPathProcessingConstants.ALL)){
             while(iterator.hasNext()){
                 Object object =iterator.next();
                 if(object instanceof OMElement){

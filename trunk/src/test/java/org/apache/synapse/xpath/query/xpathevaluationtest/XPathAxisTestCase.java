@@ -2,6 +2,7 @@ package org.apache.synapse.xpath.query.xpathevaluationtest;
 
 
 import junit.framework.Assert;
+import org.apache.axiom.om.OMAttribute;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.synapse.xpath.evaluator.ResultCollector;
@@ -17,8 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class XPathAxisTestCase {
-
-
 
 
 
@@ -92,7 +91,7 @@ public class XPathAxisTestCase {
 
     @Test
     public void absoluteandDesecndantOrSelfAxisTestCase(){
-        String   xpathquery = "/breakfast_menu/descendant-or-self::*";
+        String   xpathquery = "/breakfast_menu/food/descendant-or-self::*";
         XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
         OMElement omElementone = getOMElement();
         double starttime = System.currentTimeMillis();
@@ -101,17 +100,138 @@ public class XPathAxisTestCase {
         List<OMElement> omElementList = resultCollector.getOmElementList();
         double  endTime =System.currentTimeMillis();
         System.out.println(endTime -starttime);
-        Assert.assertEquals(10, omElementList.size());
+        Assert.assertEquals(6, omElementList.size());
 
     }
 
+    @Test
+    public void absoluteandFollowingAxisTestCase(){
+        String   xpathquery = "/breakfast_menu/food/name/following::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(7, omElementList.size());
 
+    }
 
+    @Test
+    public void absoluteandFollowingAxisTestCaseTwo(){
+        String   xpathquery = "/breakfast_menu/food/name/following::name";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(2, omElementList.size());
 
+    }
+    @Test
+    public void absoluteandFollowingSiblingAxisTestCaseTwo(){
+        String   xpathquery = "/breakfast_menu/food/name/following-sibling::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(2, omElementList.size());
 
+    }
+    @Test
+    public void absoluteandFollowingSiblingAxisTestCaseThree(){
+        String   xpathquery = "/breakfast_menu/food/price/following-sibling::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(0, omElementList.size());
 
+    }
+    @Test
+    public void absoluteandFollowingSiblingAxisTestCasefour(){
+        String   xpathquery = "/breakfast_menu/food/following-sibling::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(2, omElementList.size());
 
+    }
+    @Test
+    public void absoluteandFollowingSiblingAxisTestCasefive(){
+        String   xpathquery = "/breakfast_menu/food/following-sibling::drink";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(1, omElementList.size());
 
+    }
+    @Test
+    public void absoluteandFollowingSiblingAxisTestCasesix(){
+        String   xpathquery = "/breakfast_menu/food/name/following-sibling::coin";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMElement> omElementList = resultCollector.getOmElementList();
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(0, omElementList.size());
+
+    }
+
+    @Test
+    public void absoluteandattributeTestCase(){
+        String   xpathquery = "/breakfast_menu/food/attribute::item";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMAttribute> omAttributeList = resultCollector.getOmAttributeList() ;
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(1, omAttributeList.size());
+
+    }
+    @Test
+    public void absoluteandattributeTestCaseOne(){
+        String   xpathquery = "/breakfast_menu/food/attribute::*";
+        XPathProcessor xPathProcessor = XPathProcessorFactory.getXPathProcessor(xpathquery);
+        OMElement omElementone = getOMElement();
+        double starttime = System.currentTimeMillis();
+        xPathProcessor.xpathProcess(omElementone);
+        ResultCollector resultCollector = xPathProcessor.getResultCollector();
+        List<OMAttribute> omAttributeList = resultCollector.getOmAttributeList() ;
+        double  endTime =System.currentTimeMillis();
+        System.out.println(endTime -starttime);
+        Assert.assertEquals(2, omAttributeList.size());
+
+    }
 
 
 

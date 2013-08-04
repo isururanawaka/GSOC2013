@@ -2,13 +2,7 @@ package org.apache.synapse.xpath.util;
 
 import org.apache.synapse.xpath.expression.axis.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/18/13
- * Time: 5:52 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class AxisUtil {
 
 

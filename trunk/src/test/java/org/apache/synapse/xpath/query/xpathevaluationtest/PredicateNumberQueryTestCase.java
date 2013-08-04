@@ -27,10 +27,10 @@ public class  PredicateNumberQueryTestCase{
         OMElement omElement = getOMElement();
         double starttime = System.currentTimeMillis();
         xPathProcessor.xpathProcess(omElement);
-        double endtime =System.currentTimeMillis();
+
         ResultCollector resultCollector = xPathProcessor.getResultCollector();
         List<OMElement> omElementList = resultCollector.getOmElementList();
-
+        double endtime =System.currentTimeMillis();
         System.out.println(endtime-starttime);
         OMElement omElementOne  = omElementList.get(0);
         OMElement omElementTwo = omElementList.get(1);

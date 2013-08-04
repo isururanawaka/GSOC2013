@@ -11,9 +11,11 @@ import org.apache.synapse.xpath.expression.DefaultNameStep;
 import org.apache.synapse.xpath.expression.Step;
 import org.apache.synapse.xpath.expression.XpathExpr;
 import org.apache.synapse.xpath.util.PredicateProcessingUtil;
+import org.apache.synapse.xpath.util.XPathProcessingConstants;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.util.List;
 
 public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPathProcessor {
@@ -40,10 +42,20 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
 
     @Override
     public void xpathProcess(OMElement omElement) {
-        xmlReader.setXmlStreamReader(omElement);
+        xmlReader.setXMLStreamReader(omElement);
         DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
         absoluteLocationPathProcess(locationPath);
     }
+
+    public void xpathProcess(XMLStreamReader xmlStreamReader){
+        xmlReader.setXMLStreamReader(xmlStreamReader);
+        DefaultAbsoluteLocationPath locationPath = (DefaultAbsoluteLocationPath) this.xpathExpr.getRootExpr();
+        absoluteLocationPathProcess(locationPath);
+    }
+
+
+
+
 
     @Override
     public ResultCollector getResultCollector() {
@@ -55,11 +67,11 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
 
         DefaultNameStep defaultNameStep = (DefaultNameStep) step;
         String localName = defaultNameStep.getLocalName();
-        if(numSteps ==((index+1)+1)){
+        if(numSteps ==((index+ XPathProcessingConstants.OFFSET_ONE)+XPathProcessingConstants.OFFSET_ONE)){
             checkingName = localName;
         }
-       if(numSteps==(index+1)){
-           if(!(localName.equals(checkingName)||localName.equals("*"))){
+       if(numSteps==(index+XPathProcessingConstants.OFFSET_ONE)){
+           if(!(localName.equals(checkingName)||localName.equals(XPathProcessingConstants.ALL))){
                resultCollector.clearList();
                return false;
            }
@@ -98,9 +110,9 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
                             }
                         }
                     }
-                    if (xmlReader.getStepCounter() == 1 && (index ==0)){
+                    if (xmlReader.getStepCounter() == XPathProcessingConstants.OFFSET_ONE && (index ==XPathProcessingConstants.COUNTER_ZERO)){
                         if (localName.equals(xmlEventRepresentation.getLocalName())) {
-                            if (numSteps == 2){  // ==1 make relative work
+                            if (numSteps == XPathProcessingConstants.PARENT_EXIT_VALUE){  // ==1 make relative work
                                 resultCollector.addOMElement(xmlReader.getOmElement());
 
                             }
@@ -109,10 +121,10 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
                         } else {
                             return false;
                         }
-                    } else if (xmlReader.getXMLReadDepth() == index + 1) {
+                    } else if (xmlReader.getXMLReadDepth() == index + XPathProcessingConstants.OFFSET_ONE) {
                         if (localName.equals(xmlEventRepresentation.getLocalName())) {
                             if (predicateType == PredicateProcessingUtil.NOPREDICATE || predicateType == PredicateProcessingUtil.EQUALPREDICATE || predicateType == PredicateProcessingUtil.NOTEQUALPREDICATE) {
-                                if ((numSteps-1) == xmlReader.getXMLReadDepth()) {
+                                if ((numSteps-XPathProcessingConstants.OFFSET_ONE) == xmlReader.getXMLReadDepth()) {
                                     capturingOnXMlDepth = xmlReader.getXMLReadDepth();
                                     capturingOn = true;
                                     resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
@@ -132,9 +144,9 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
 
                             continue;
                         }
-                    } else if (xmlReader.getXMLReadDepth() > index + 1) {
+                    } else if (xmlReader.getXMLReadDepth() > index + XPathProcessingConstants.OFFSET_ONE) {
                         continue;
-                    } else if (index > 0 && xmlReader.getXMLReadDepth() == index) {
+                    } else if (index > XPathProcessingConstants.COUNTER_ZERO && xmlReader.getXMLReadDepth() == index) {
                         return false;
                     }
                     break;
@@ -148,7 +160,7 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
                         resultBuilder.createOM(xmlEventRepresentation, xmlReader.getXMLReadDepth());
                     }
                     xmlReader.decrementDepth();
-                    if ((numSteps-1) - xmlReader.getXMLReadDepth() == 2) {
+                    if ((numSteps) - xmlReader.getXMLReadDepth() == XPathProcessingConstants.PARENT_EXIT_VALUE) {
                         xmlReader.resetNumberLiteralCounter();
                     }
                     break;
@@ -163,7 +175,7 @@ public class SelfAxisXPathProcessor extends ParentXPathProcessor implements XPat
         for (int i = 0; i < stepList.size(); i++) {
             try {
                 matched = stepSelection(stepList.get(i), i, numsteps);
-                if (xmlReader.getXMLReadDepth() == (stepList.size()-1)) {
+                if (xmlReader.getXMLReadDepth() == (stepList.size()-XPathProcessingConstants.OFFSET_ONE)) {
                     i = 0;
                 }
             } catch (XMLStreamException e) {

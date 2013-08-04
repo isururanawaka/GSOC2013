@@ -35,7 +35,7 @@ public abstract class ParentXPathProcessor{
                counter++;
                 if(counter == stepList.size()&& xmlReader.getXMLReadDepth()!=0){
                    i=0;
-                   counter=0;
+                   counter=1;
                 }
             } catch (XMLStreamException e) {
                 e.printStackTrace();

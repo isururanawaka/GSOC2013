@@ -1,4 +1,4 @@
-// $ANTLR 3.4 org/apache/synapse/xpath/compiler/XPath1.g 2013-06-15 10:20:38
+// $ANTLR 3.4 org/apache/synapse/xpath/compiler/XPath1.g 2013-07-19 08:05:12
 
 	package org.apache.synapse.xpath.compiler;
 
@@ -135,7 +135,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_locationPath_in_xpath236);
+            pushFollow(FOLLOW_locationPath_in_xpath229);
             locationPath1=locationPath();
 
             state._fsp--;
@@ -226,7 +226,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_relativeLocationPath_in_locationPath249);
+                    pushFollow(FOLLOW_relativeLocationPath_in_locationPath242);
                     relativeLocationPath2=relativeLocationPath();
 
                     state._fsp--;
@@ -241,7 +241,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_absoluteLocationPath_in_locationPath257);
+                    pushFollow(FOLLOW_absoluteLocationPath_in_locationPath250);
                     absoluteLocationPath3=absoluteLocationPath();
 
                     state._fsp--;
@@ -367,7 +367,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    SingleAxisStep4=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_absoluteLocationPath277); if (state.failed) return retval;
+                    SingleAxisStep4=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_absoluteLocationPath270); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     SingleAxisStep4_tree = 
                     (CommonTree)adaptor.create(SingleAxisStep4)
@@ -380,11 +380,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:55:7: SingleAxisStep relativeLocationPath
                     {
-                    SingleAxisStep5=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_absoluteLocationPath285); if (state.failed) return retval; 
+                    SingleAxisStep5=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_absoluteLocationPath278); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SingleAxisStep.add(SingleAxisStep5);
 
 
-                    pushFollow(FOLLOW_relativeLocationPath_in_absoluteLocationPath287);
+                    pushFollow(FOLLOW_relativeLocationPath_in_absoluteLocationPath280);
                     relativeLocationPath6=relativeLocationPath();
 
                     state._fsp--;
@@ -436,7 +436,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_abbreviatedAbsoluteLocationPath_in_absoluteLocationPath309);
+                    pushFollow(FOLLOW_abbreviatedAbsoluteLocationPath_in_absoluteLocationPath302);
                     abbreviatedAbsoluteLocationPath7=abbreviatedAbsoluteLocationPath();
 
                     state._fsp--;
@@ -497,11 +497,11 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:59:32: ( RecursiveAxisStep relativeLocationPath -> ^( RecursiveAxisStep relativeLocationPath ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:59:34: RecursiveAxisStep relativeLocationPath
             {
-            RecursiveAxisStep8=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath321); if (state.failed) return retval; 
+            RecursiveAxisStep8=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath314); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RecursiveAxisStep.add(RecursiveAxisStep8);
 
 
-            pushFollow(FOLLOW_relativeLocationPath_in_abbreviatedAbsoluteLocationPath323);
+            pushFollow(FOLLOW_relativeLocationPath_in_abbreviatedAbsoluteLocationPath316);
             relativeLocationPath9=relativeLocationPath();
 
             state._fsp--;
@@ -509,7 +509,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_relativeLocationPath.add(relativeLocationPath9.getTree());
 
             // AST REWRITE
-            // elements: RecursiveAxisStep, relativeLocationPath
+            // elements: relativeLocationPath, RecursiveAxisStep
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -756,7 +756,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:62:7: step ( ( SingleAxisStep relativeLocationPathrec ) -> ^( SingleAxisStep step relativeLocationPathrec ) | ( RecursiveAxisStep relativeLocationPathrec ) -> ^( RecursiveAxisStep step relativeLocationPathrec ) )
                     {
-                    pushFollow(FOLLOW_step_in_relativeLocationPath344);
+                    pushFollow(FOLLOW_step_in_relativeLocationPath337);
                     step10=step();
 
                     state._fsp--;
@@ -792,11 +792,11 @@ public TreeAdaptor getTreeAdaptor() {
                             // org/apache/synapse/xpath/compiler/XPath1.g:63:9: ( SingleAxisStep relativeLocationPathrec )
                             // org/apache/synapse/xpath/compiler/XPath1.g:63:10: SingleAxisStep relativeLocationPathrec
                             {
-                            SingleAxisStep11=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_relativeLocationPath356); if (state.failed) return retval; 
+                            SingleAxisStep11=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_relativeLocationPath349); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_SingleAxisStep.add(SingleAxisStep11);
 
 
-                            pushFollow(FOLLOW_relativeLocationPathrec_in_relativeLocationPath359);
+                            pushFollow(FOLLOW_relativeLocationPathrec_in_relativeLocationPath352);
                             relativeLocationPathrec12=relativeLocationPathrec();
 
                             state._fsp--;
@@ -807,7 +807,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                             // AST REWRITE
-                            // elements: relativeLocationPathrec, step, SingleAxisStep
+                            // elements: step, SingleAxisStep, relativeLocationPathrec
                             // token labels: 
                             // rule labels: retval
                             // token list labels: 
@@ -849,11 +849,11 @@ public TreeAdaptor getTreeAdaptor() {
                             // org/apache/synapse/xpath/compiler/XPath1.g:64:9: ( RecursiveAxisStep relativeLocationPathrec )
                             // org/apache/synapse/xpath/compiler/XPath1.g:64:10: RecursiveAxisStep relativeLocationPathrec
                             {
-                            RecursiveAxisStep13=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_relativeLocationPath381); if (state.failed) return retval; 
+                            RecursiveAxisStep13=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_relativeLocationPath374); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_RecursiveAxisStep.add(RecursiveAxisStep13);
 
 
-                            pushFollow(FOLLOW_relativeLocationPathrec_in_relativeLocationPath384);
+                            pushFollow(FOLLOW_relativeLocationPathrec_in_relativeLocationPath377);
                             relativeLocationPathrec14=relativeLocationPathrec();
 
                             state._fsp--;
@@ -864,7 +864,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                             // AST REWRITE
-                            // elements: relativeLocationPathrec, RecursiveAxisStep, step
+                            // elements: relativeLocationPathrec, step, RecursiveAxisStep
                             // token labels: 
                             // rule labels: retval
                             // token list labels: 
@@ -912,7 +912,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_step_in_relativeLocationPath413);
+                    pushFollow(FOLLOW_step_in_relativeLocationPath406);
                     step15=step();
 
                     state._fsp--;
@@ -973,7 +973,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_relativeLocationPath_in_relativeLocationPathrec436);
+            pushFollow(FOLLOW_relativeLocationPath_in_relativeLocationPathrec429);
             relativeLocationPath16=relativeLocationPath();
 
             state._fsp--;
@@ -1999,14 +1999,14 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:72:7: namedAxisStep predicate
                     {
-                    pushFollow(FOLLOW_namedAxisStep_in_step448);
+                    pushFollow(FOLLOW_namedAxisStep_in_step441);
                     namedAxisStep17=namedAxisStep();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_namedAxisStep.add(namedAxisStep17.getTree());
 
-                    pushFollow(FOLLOW_predicate_in_step450);
+                    pushFollow(FOLLOW_predicate_in_step443);
                     predicate18=predicate();
 
                     state._fsp--;
@@ -2056,7 +2056,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_namedAxisStep_in_step468);
+                    pushFollow(FOLLOW_namedAxisStep_in_step461);
                     namedAxisStep19=namedAxisStep();
 
                     state._fsp--;
@@ -2068,14 +2068,14 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:74:7: abbreviatedAxisStep predicate
                     {
-                    pushFollow(FOLLOW_abbreviatedAxisStep_in_step476);
+                    pushFollow(FOLLOW_abbreviatedAxisStep_in_step469);
                     abbreviatedAxisStep20=abbreviatedAxisStep();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_abbreviatedAxisStep.add(abbreviatedAxisStep20.getTree());
 
-                    pushFollow(FOLLOW_predicate_in_step479);
+                    pushFollow(FOLLOW_predicate_in_step472);
                     predicate21=predicate();
 
                     state._fsp--;
@@ -2083,7 +2083,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_predicate.add(predicate21.getTree());
 
                     // AST REWRITE
-                    // elements: abbreviatedAxisStep, abbreviatedAxisStep, predicate
+                    // elements: predicate, abbreviatedAxisStep, abbreviatedAxisStep
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2171,7 +2171,7 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:80:5: ( AbbreviatedStep -> ^( ABBREVIATED_AXIS_STEP AbbreviatedStep ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:80:7: AbbreviatedStep
             {
-            AbbreviatedStep22=(Token)match(input,AbbreviatedStep,FOLLOW_AbbreviatedStep_in_abbreviatedAxisStep514); if (state.failed) return retval; 
+            AbbreviatedStep22=(Token)match(input,AbbreviatedStep,FOLLOW_AbbreviatedStep_in_abbreviatedAxisStep507); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_AbbreviatedStep.add(AbbreviatedStep22);
 
 
@@ -2291,14 +2291,14 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:83:7: axisSpecifier nodeTest
                     {
-                    pushFollow(FOLLOW_axisSpecifier_in_namedAxisStep534);
+                    pushFollow(FOLLOW_axisSpecifier_in_namedAxisStep527);
                     axisSpecifier23=axisSpecifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_axisSpecifier.add(axisSpecifier23.getTree());
 
-                    pushFollow(FOLLOW_nodeTest_in_namedAxisStep536);
+                    pushFollow(FOLLOW_nodeTest_in_namedAxisStep529);
                     nodeTest24=nodeTest();
 
                     state._fsp--;
@@ -2348,7 +2348,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_nodeTest_in_namedAxisStep554);
+                    pushFollow(FOLLOW_nodeTest_in_namedAxisStep547);
                     nodeTest25=nodeTest();
 
                     state._fsp--;
@@ -2436,11 +2436,11 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:88:7: AxisName AxisNameSeparator
                     {
-                    AxisName26=(Token)match(input,AxisName,FOLLOW_AxisName_in_axisSpecifier571); if (state.failed) return retval; 
+                    AxisName26=(Token)match(input,AxisName,FOLLOW_AxisName_in_axisSpecifier564); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_AxisName.add(AxisName26);
 
 
-                    AxisNameSeparator27=(Token)match(input,AxisNameSeparator,FOLLOW_AxisNameSeparator_in_axisSpecifier573); if (state.failed) return retval; 
+                    AxisNameSeparator27=(Token)match(input,AxisNameSeparator,FOLLOW_AxisNameSeparator_in_axisSpecifier566); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_AxisNameSeparator.add(AxisNameSeparator27);
 
 
@@ -2484,7 +2484,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:89:7: AbbreviatedAxisSpecifier
                     {
-                    AbbreviatedAxisSpecifier28=(Token)match(input,AbbreviatedAxisSpecifier,FOLLOW_AbbreviatedAxisSpecifier_in_axisSpecifier589); if (state.failed) return retval; 
+                    AbbreviatedAxisSpecifier28=(Token)match(input,AbbreviatedAxisSpecifier,FOLLOW_AbbreviatedAxisSpecifier_in_axisSpecifier582); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_AbbreviatedAxisSpecifier.add(AbbreviatedAxisSpecifier28);
 
 
@@ -2625,7 +2625,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_nameTest_in_nodeTest611);
+                    pushFollow(FOLLOW_nameTest_in_nodeTest604);
                     nameTest29=nameTest();
 
                     state._fsp--;
@@ -2637,15 +2637,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:94:4: NodeType LeftParenthesis RightParenthesis
                     {
-                    NodeType30=(Token)match(input,NodeType,FOLLOW_NodeType_in_nodeTest617); if (state.failed) return retval; 
+                    NodeType30=(Token)match(input,NodeType,FOLLOW_NodeType_in_nodeTest610); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NodeType.add(NodeType30);
 
 
-                    LeftParenthesis31=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_nodeTest619); if (state.failed) return retval; 
+                    LeftParenthesis31=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_nodeTest612); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LeftParenthesis.add(LeftParenthesis31);
 
 
-                    RightParenthesis32=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_nodeTest621); if (state.failed) return retval; 
+                    RightParenthesis32=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_nodeTest614); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RightParenthesis.add(RightParenthesis32);
 
 
@@ -2689,19 +2689,19 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:95:4: ProcessingInstruction LeftParenthesis StringLiteral RightParenthesis
                     {
-                    ProcessingInstruction33=(Token)match(input,ProcessingInstruction,FOLLOW_ProcessingInstruction_in_nodeTest634); if (state.failed) return retval; 
+                    ProcessingInstruction33=(Token)match(input,ProcessingInstruction,FOLLOW_ProcessingInstruction_in_nodeTest627); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ProcessingInstruction.add(ProcessingInstruction33);
 
 
-                    LeftParenthesis34=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_nodeTest636); if (state.failed) return retval; 
+                    LeftParenthesis34=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_nodeTest629); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LeftParenthesis.add(LeftParenthesis34);
 
 
-                    StringLiteral35=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_nodeTest638); if (state.failed) return retval; 
+                    StringLiteral35=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_nodeTest631); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_StringLiteral.add(StringLiteral35);
 
 
-                    RightParenthesis36=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_nodeTest640); if (state.failed) return retval; 
+                    RightParenthesis36=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_nodeTest633); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RightParenthesis.add(RightParenthesis36);
 
 
@@ -2783,7 +2783,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "nameTest"
-    // org/apache/synapse/xpath/compiler/XPath1.g:98:1: nameTest : ( Star -> ^( ANY_NODE ) | NCName Colon Star -> ^( ANY_NAMESPACED_NODE NCName ) | qName );
+    // org/apache/synapse/xpath/compiler/XPath1.g:98:1: nameTest : ( Star -> ^( Star ) | NCName Colon Star -> ^( ANY_NAMESPACED_NODE NCName ) | qName );
     public final XPath1Parser.nameTest_return nameTest() throws RecognitionException {
         XPath1Parser.nameTest_return retval = new XPath1Parser.nameTest_return();
         retval.start = input.LT(1);
@@ -2807,7 +2807,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_Star=new RewriteRuleTokenStream(adaptor,"token Star");
 
         try {
-            // org/apache/synapse/xpath/compiler/XPath1.g:99:5: ( Star -> ^( ANY_NODE ) | NCName Colon Star -> ^( ANY_NAMESPACED_NODE NCName ) | qName )
+            // org/apache/synapse/xpath/compiler/XPath1.g:99:5: ( Star -> ^( Star ) | NCName Colon Star -> ^( ANY_NAMESPACED_NODE NCName ) | qName )
             int alt9=3;
             switch ( input.LA(1) ) {
             case Star:
@@ -2884,12 +2884,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:99:7: Star
                     {
-                    Star37=(Token)match(input,Star,FOLLOW_Star_in_nameTest669); if (state.failed) return retval; 
+                    Star37=(Token)match(input,Star,FOLLOW_Star_in_nameTest662); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Star.add(Star37);
 
 
                     // AST REWRITE
-                    // elements: 
+                    // elements: Star
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2901,13 +2901,13 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 99:12: -> ^( ANY_NODE )
+                    // 99:12: -> ^( Star )
                     {
-                        // org/apache/synapse/xpath/compiler/XPath1.g:99:15: ^( ANY_NODE )
+                        // org/apache/synapse/xpath/compiler/XPath1.g:99:15: ^( Star )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
-                        (CommonTree)adaptor.create(ANY_NODE, "ANY_NODE")
+                        stream_Star.nextNode()
                         , root_1);
 
                         adaptor.addChild(root_0, root_1);
@@ -2924,15 +2924,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:100:7: NCName Colon Star
                     {
-                    NCName38=(Token)match(input,NCName,FOLLOW_NCName_in_nameTest683); if (state.failed) return retval; 
+                    NCName38=(Token)match(input,NCName,FOLLOW_NCName_in_nameTest676); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NCName.add(NCName38);
 
 
-                    Colon39=(Token)match(input,Colon,FOLLOW_Colon_in_nameTest685); if (state.failed) return retval; 
+                    Colon39=(Token)match(input,Colon,FOLLOW_Colon_in_nameTest678); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Colon.add(Colon39);
 
 
-                    Star40=(Token)match(input,Star,FOLLOW_Star_in_nameTest687); if (state.failed) return retval; 
+                    Star40=(Token)match(input,Star,FOLLOW_Star_in_nameTest680); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Star.add(Star40);
 
 
@@ -2979,7 +2979,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_qName_in_nameTest703);
+                    pushFollow(FOLLOW_qName_in_nameTest696);
                     qName41=qName();
 
                     state._fsp--;
@@ -3043,18 +3043,18 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:105:5: ( LeftSquareBracket predicateExpr RightSquareBracket -> ^( PREDICATE predicateExpr ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:105:7: LeftSquareBracket predicateExpr RightSquareBracket
             {
-            LeftSquareBracket42=(Token)match(input,LeftSquareBracket,FOLLOW_LeftSquareBracket_in_predicate720); if (state.failed) return retval; 
+            LeftSquareBracket42=(Token)match(input,LeftSquareBracket,FOLLOW_LeftSquareBracket_in_predicate713); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LeftSquareBracket.add(LeftSquareBracket42);
 
 
-            pushFollow(FOLLOW_predicateExpr_in_predicate722);
+            pushFollow(FOLLOW_predicateExpr_in_predicate715);
             predicateExpr43=predicateExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_predicateExpr.add(predicateExpr43.getTree());
 
-            RightSquareBracket44=(Token)match(input,RightSquareBracket,FOLLOW_RightSquareBracket_in_predicate724); if (state.failed) return retval; 
+            RightSquareBracket44=(Token)match(input,RightSquareBracket,FOLLOW_RightSquareBracket_in_predicate717); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RightSquareBracket.add(RightSquareBracket44);
 
 
@@ -3143,7 +3143,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_predicateExpr745);
+            pushFollow(FOLLOW_expr_in_predicateExpr738);
             expr45=expr();
 
             state._fsp--;
@@ -3208,14 +3208,14 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:111:2: ( qName LeftParenthesis ( expressionList )? RightParenthesis -> ^( FUNCALL qName ( ^( EXPRLIST expressionList ) )? ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:111:4: qName LeftParenthesis ( expressionList )? RightParenthesis
             {
-            pushFollow(FOLLOW_qName_in_functionCall758);
+            pushFollow(FOLLOW_qName_in_functionCall751);
             qName46=qName();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_qName.add(qName46.getTree());
 
-            LeftParenthesis47=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_functionCall760); if (state.failed) return retval; 
+            LeftParenthesis47=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_functionCall753); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LeftParenthesis.add(LeftParenthesis47);
 
 
@@ -3248,7 +3248,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:112:4: expressionList
                     {
-                    pushFollow(FOLLOW_expressionList_in_functionCall765);
+                    pushFollow(FOLLOW_expressionList_in_functionCall758);
                     expressionList48=expressionList();
 
                     state._fsp--;
@@ -3261,7 +3261,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            RightParenthesis49=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_functionCall772); if (state.failed) return retval; 
+            RightParenthesis49=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_functionCall765); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RightParenthesis.add(RightParenthesis49);
 
 
@@ -3370,7 +3370,7 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:117:5: ( expr ( Comma exprrec )* -> ^( expr ( ^( Comma exprrec ) )* ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:117:7: expr ( Comma exprrec )*
             {
-            pushFollow(FOLLOW_expr_in_expressionList804);
+            pushFollow(FOLLOW_expr_in_expressionList797);
             expr50=expr();
 
             state._fsp--;
@@ -3394,11 +3394,11 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // org/apache/synapse/xpath/compiler/XPath1.g:117:14: Comma exprrec
             	    {
-            	    Comma51=(Token)match(input,Comma,FOLLOW_Comma_in_expressionList808); if (state.failed) return retval; 
+            	    Comma51=(Token)match(input,Comma,FOLLOW_Comma_in_expressionList801); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_Comma.add(Comma51);
 
 
-            	    pushFollow(FOLLOW_exprrec_in_expressionList810);
+            	    pushFollow(FOLLOW_exprrec_in_expressionList803);
             	    exprrec52=exprrec();
 
             	    state._fsp--;
@@ -3415,7 +3415,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: exprrec, Comma, expr
+            // elements: Comma, expr, exprrec
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3435,7 +3435,7 @@ public TreeAdaptor getTreeAdaptor() {
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_expr.nextNode(), root_1);
 
                 // org/apache/synapse/xpath/compiler/XPath1.g:117:41: ( ^( Comma exprrec ) )*
-                while ( stream_exprrec.hasNext()||stream_Comma.hasNext() ) {
+                while ( stream_Comma.hasNext()||stream_exprrec.hasNext() ) {
                     // org/apache/synapse/xpath/compiler/XPath1.g:117:42: ^( Comma exprrec )
                     {
                     CommonTree root_2 = (CommonTree)adaptor.nil();
@@ -3449,8 +3449,8 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                stream_exprrec.reset();
                 stream_Comma.reset();
+                stream_exprrec.reset();
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -3513,7 +3513,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_exprrec838);
+            pushFollow(FOLLOW_expr_in_exprrec831);
             expr53=expr();
 
             state._fsp--;
@@ -3710,7 +3710,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_locationPath_in_pathExpr850);
+                    pushFollow(FOLLOW_locationPath_in_pathExpr843);
                     locationPath54=locationPath();
 
                     state._fsp--;
@@ -3725,21 +3725,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_filterExpr_in_pathExpr858);
+                    pushFollow(FOLLOW_filterExpr_in_pathExpr851);
                     filterExpr55=filterExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, filterExpr55.getTree());
 
-                    pushFollow(FOLLOW_simpleAxisStep_in_pathExpr860);
+                    pushFollow(FOLLOW_simpleAxisStep_in_pathExpr853);
                     simpleAxisStep56=simpleAxisStep();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, simpleAxisStep56.getTree());
 
-                    pushFollow(FOLLOW_relativeLocationPath_in_pathExpr863);
+                    pushFollow(FOLLOW_relativeLocationPath_in_pathExpr856);
                     relativeLocationPath57=relativeLocationPath();
 
                     state._fsp--;
@@ -3754,7 +3754,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_filterExpr_in_pathExpr870);
+                    pushFollow(FOLLOW_filterExpr_in_pathExpr863);
                     filterExpr58=filterExpr();
 
                     state._fsp--;
@@ -3842,7 +3842,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:128:8: SingleAxisStep
                     {
-                    SingleAxisStep59=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_simpleAxisStep888); if (state.failed) return retval; 
+                    SingleAxisStep59=(Token)match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_simpleAxisStep881); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SingleAxisStep.add(SingleAxisStep59);
 
 
@@ -3882,7 +3882,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:129:7: RecursiveAxisStep
                     {
-                    RecursiveAxisStep60=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_simpleAxisStep904); if (state.failed) return retval; 
+                    RecursiveAxisStep60=(Token)match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_simpleAxisStep897); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RecursiveAxisStep.add(RecursiveAxisStep60);
 
 
@@ -4092,14 +4092,14 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:133:13: primaryExpr predicate
                     {
-                    pushFollow(FOLLOW_primaryExpr_in_filterExpr932);
+                    pushFollow(FOLLOW_primaryExpr_in_filterExpr925);
                     primaryExpr61=primaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_primaryExpr.add(primaryExpr61.getTree());
 
-                    pushFollow(FOLLOW_predicate_in_filterExpr934);
+                    pushFollow(FOLLOW_predicate_in_filterExpr927);
                     predicate62=predicate();
 
                     state._fsp--;
@@ -4149,7 +4149,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_primaryExpr_in_filterExpr957);
+                    pushFollow(FOLLOW_primaryExpr_in_filterExpr950);
                     primaryExpr63=primaryExpr();
 
                     state._fsp--;
@@ -4250,7 +4250,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    LeftParenthesis64=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_primaryExpr980); if (state.failed) return retval;
+                    LeftParenthesis64=(Token)match(input,LeftParenthesis,FOLLOW_LeftParenthesis_in_primaryExpr973); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     LeftParenthesis64_tree = 
                     (CommonTree)adaptor.create(LeftParenthesis64)
@@ -4258,14 +4258,14 @@ public TreeAdaptor getTreeAdaptor() {
                     adaptor.addChild(root_0, LeftParenthesis64_tree);
                     }
 
-                    pushFollow(FOLLOW_expr_in_primaryExpr982);
+                    pushFollow(FOLLOW_expr_in_primaryExpr975);
                     expr65=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expr65.getTree());
 
-                    RightParenthesis66=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_primaryExpr984); if (state.failed) return retval;
+                    RightParenthesis66=(Token)match(input,RightParenthesis,FOLLOW_RightParenthesis_in_primaryExpr977); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     RightParenthesis66_tree = 
                     (CommonTree)adaptor.create(RightParenthesis66)
@@ -4281,7 +4281,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_literal_in_primaryExpr992);
+                    pushFollow(FOLLOW_literal_in_primaryExpr985);
                     literal67=literal();
 
                     state._fsp--;
@@ -4296,7 +4296,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_functionCall_in_primaryExpr1000);
+                    pushFollow(FOLLOW_functionCall_in_primaryExpr993);
                     functionCall68=functionCall();
 
                     state._fsp--;
@@ -4357,7 +4357,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_orExpr_in_expr1012);
+            pushFollow(FOLLOW_orExpr_in_expr1005);
             orExpr69=orExpr();
 
             state._fsp--;
@@ -4716,18 +4716,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:145:9: andExpr Or orExprrec
                     {
-                    pushFollow(FOLLOW_andExpr_in_orExpr1019);
+                    pushFollow(FOLLOW_andExpr_in_orExpr1012);
                     andExpr70=andExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_andExpr.add(andExpr70.getTree());
 
-                    Or71=(Token)match(input,Or,FOLLOW_Or_in_orExpr1021); if (state.failed) return retval; 
+                    Or71=(Token)match(input,Or,FOLLOW_Or_in_orExpr1014); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Or.add(Or71);
 
 
-                    pushFollow(FOLLOW_orExprrec_in_orExpr1023);
+                    pushFollow(FOLLOW_orExprrec_in_orExpr1016);
                     orExprrec72=orExprrec();
 
                     state._fsp--;
@@ -4735,7 +4735,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_orExprrec.add(orExprrec72.getTree());
 
                     // AST REWRITE
-                    // elements: Or, andExpr, orExprrec
+                    // elements: andExpr, orExprrec, Or
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4777,7 +4777,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_andExpr_in_orExpr1043);
+                    pushFollow(FOLLOW_andExpr_in_orExpr1036);
                     andExpr73=andExpr();
 
                     state._fsp--;
@@ -4838,7 +4838,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_orExpr_in_orExprrec1057);
+            pushFollow(FOLLOW_orExpr_in_orExprrec1050);
             orExpr74=orExpr();
 
             state._fsp--;
@@ -5197,18 +5197,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:150:10: equalityExpr And andExprrec
                     {
-                    pushFollow(FOLLOW_equalityExpr_in_andExpr1063);
+                    pushFollow(FOLLOW_equalityExpr_in_andExpr1056);
                     equalityExpr75=equalityExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_equalityExpr.add(equalityExpr75.getTree());
 
-                    And76=(Token)match(input,And,FOLLOW_And_in_andExpr1065); if (state.failed) return retval; 
+                    And76=(Token)match(input,And,FOLLOW_And_in_andExpr1058); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_And.add(And76);
 
 
-                    pushFollow(FOLLOW_andExprrec_in_andExpr1067);
+                    pushFollow(FOLLOW_andExprrec_in_andExpr1060);
                     andExprrec77=andExprrec();
 
                     state._fsp--;
@@ -5216,7 +5216,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_andExprrec.add(andExprrec77.getTree());
 
                     // AST REWRITE
-                    // elements: And, equalityExpr, andExprrec
+                    // elements: And, andExprrec, equalityExpr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5258,7 +5258,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_equalityExpr_in_andExpr1087);
+                    pushFollow(FOLLOW_equalityExpr_in_andExpr1080);
                     equalityExpr78=equalityExpr();
 
                     state._fsp--;
@@ -5319,7 +5319,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_andExpr_in_andExprrec1102);
+            pushFollow(FOLLOW_andExpr_in_andExprrec1095);
             andExpr79=andExpr();
 
             state._fsp--;
@@ -5678,18 +5678,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:158:7: relationalExpr EqualityOp equalityExprrec
                     {
-                    pushFollow(FOLLOW_relationalExpr_in_equalityExpr1115);
+                    pushFollow(FOLLOW_relationalExpr_in_equalityExpr1108);
                     relationalExpr80=relationalExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_relationalExpr.add(relationalExpr80.getTree());
 
-                    EqualityOp81=(Token)match(input,EqualityOp,FOLLOW_EqualityOp_in_equalityExpr1117); if (state.failed) return retval; 
+                    EqualityOp81=(Token)match(input,EqualityOp,FOLLOW_EqualityOp_in_equalityExpr1110); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EqualityOp.add(EqualityOp81);
 
 
-                    pushFollow(FOLLOW_equalityExprrec_in_equalityExpr1119);
+                    pushFollow(FOLLOW_equalityExprrec_in_equalityExpr1112);
                     equalityExprrec82=equalityExprrec();
 
                     state._fsp--;
@@ -5697,7 +5697,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_equalityExprrec.add(equalityExprrec82.getTree());
 
                     // AST REWRITE
-                    // elements: relationalExpr, equalityExprrec, EqualityOp
+                    // elements: equalityExprrec, relationalExpr, EqualityOp
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5739,7 +5739,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_relationalExpr_in_equalityExpr1135);
+                    pushFollow(FOLLOW_relationalExpr_in_equalityExpr1128);
                     relationalExpr83=relationalExpr();
 
                     state._fsp--;
@@ -5800,7 +5800,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_equalityExpr_in_equalityExprrec1149);
+            pushFollow(FOLLOW_equalityExpr_in_equalityExprrec1142);
             equalityExpr84=equalityExpr();
 
             state._fsp--;
@@ -5862,7 +5862,7 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:167:15: ( additiveExpr ( RelationalOp additiveExprrec )* -> ^( additiveExpr ( ^( RelationalOp additiveExprrec ) )* ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:167:17: additiveExpr ( RelationalOp additiveExprrec )*
             {
-            pushFollow(FOLLOW_additiveExpr_in_relationalExpr1159);
+            pushFollow(FOLLOW_additiveExpr_in_relationalExpr1152);
             additiveExpr85=additiveExpr();
 
             state._fsp--;
@@ -5886,11 +5886,11 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // org/apache/synapse/xpath/compiler/XPath1.g:167:31: RelationalOp additiveExprrec
             	    {
-            	    RelationalOp86=(Token)match(input,RelationalOp,FOLLOW_RelationalOp_in_relationalExpr1162); if (state.failed) return retval; 
+            	    RelationalOp86=(Token)match(input,RelationalOp,FOLLOW_RelationalOp_in_relationalExpr1155); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_RelationalOp.add(RelationalOp86);
 
 
-            	    pushFollow(FOLLOW_additiveExprrec_in_relationalExpr1164);
+            	    pushFollow(FOLLOW_additiveExprrec_in_relationalExpr1157);
             	    additiveExprrec87=additiveExprrec();
 
             	    state._fsp--;
@@ -5907,7 +5907,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: additiveExprrec, additiveExpr, RelationalOp
+            // elements: additiveExprrec, RelationalOp, additiveExpr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6005,7 +6005,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_additiveExpr_in_additiveExprrec1204);
+            pushFollow(FOLLOW_additiveExpr_in_additiveExprrec1197);
             additiveExpr88=additiveExpr();
 
             state._fsp--;
@@ -6067,7 +6067,7 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:171:13: ( multiplicativeExpr ( MultiplicativeOP multiplicativeExprrec )* -> ^( multiplicativeExpr ( ^( MultiplicativeOP multiplicativeExprrec ) )* ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:171:15: multiplicativeExpr ( MultiplicativeOP multiplicativeExprrec )*
             {
-            pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr1228);
+            pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr1221);
             multiplicativeExpr89=multiplicativeExpr();
 
             state._fsp--;
@@ -6091,11 +6091,11 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // org/apache/synapse/xpath/compiler/XPath1.g:171:35: MultiplicativeOP multiplicativeExprrec
             	    {
-            	    MultiplicativeOP90=(Token)match(input,MultiplicativeOP,FOLLOW_MultiplicativeOP_in_additiveExpr1231); if (state.failed) return retval; 
+            	    MultiplicativeOP90=(Token)match(input,MultiplicativeOP,FOLLOW_MultiplicativeOP_in_additiveExpr1224); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_MultiplicativeOP.add(MultiplicativeOP90);
 
 
-            	    pushFollow(FOLLOW_multiplicativeExprrec_in_additiveExpr1233);
+            	    pushFollow(FOLLOW_multiplicativeExprrec_in_additiveExpr1226);
             	    multiplicativeExprrec91=multiplicativeExprrec();
 
             	    state._fsp--;
@@ -6112,7 +6112,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: multiplicativeExprrec, multiplicativeExpr, MultiplicativeOP
+            // elements: multiplicativeExpr, multiplicativeExprrec, MultiplicativeOP
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6210,7 +6210,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_multiplicativeExpr_in_multiplicativeExprrec1257);
+            pushFollow(FOLLOW_multiplicativeExpr_in_multiplicativeExprrec1250);
             multiplicativeExpr92=multiplicativeExpr();
 
             state._fsp--;
@@ -6272,7 +6272,7 @@ public TreeAdaptor getTreeAdaptor() {
             // org/apache/synapse/xpath/compiler/XPath1.g:175:19: ( unaryExpr ( UnaryOp unaryExprrec )* -> ^( unaryExpr ( ^( UnaryOp unaryExprrec ) )* ) )
             // org/apache/synapse/xpath/compiler/XPath1.g:175:21: unaryExpr ( UnaryOp unaryExprrec )*
             {
-            pushFollow(FOLLOW_unaryExpr_in_multiplicativeExpr1266);
+            pushFollow(FOLLOW_unaryExpr_in_multiplicativeExpr1259);
             unaryExpr93=unaryExpr();
 
             state._fsp--;
@@ -6296,11 +6296,11 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // org/apache/synapse/xpath/compiler/XPath1.g:175:32: UnaryOp unaryExprrec
             	    {
-            	    UnaryOp94=(Token)match(input,UnaryOp,FOLLOW_UnaryOp_in_multiplicativeExpr1269); if (state.failed) return retval; 
+            	    UnaryOp94=(Token)match(input,UnaryOp,FOLLOW_UnaryOp_in_multiplicativeExpr1262); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_UnaryOp.add(UnaryOp94);
 
 
-            	    pushFollow(FOLLOW_unaryExprrec_in_multiplicativeExpr1271);
+            	    pushFollow(FOLLOW_unaryExprrec_in_multiplicativeExpr1264);
             	    unaryExprrec95=unaryExprrec();
 
             	    state._fsp--;
@@ -6317,7 +6317,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: unaryExpr, UnaryOp, unaryExprrec
+            // elements: UnaryOp, unaryExprrec, unaryExpr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6415,7 +6415,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_unaryExpr_in_unaryExprrec1294);
+            pushFollow(FOLLOW_unaryExpr_in_unaryExprrec1287);
             unaryExpr96=unaryExpr();
 
             state._fsp--;
@@ -6515,7 +6515,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_unionExpr_in_unaryExpr1321);
+                    pushFollow(FOLLOW_unionExpr_in_unaryExpr1314);
                     unionExpr97=unionExpr();
 
                     state._fsp--;
@@ -6530,7 +6530,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    char_literal98=(Token)match(input,62,FOLLOW_62_in_unaryExpr1333); if (state.failed) return retval;
+                    char_literal98=(Token)match(input,62,FOLLOW_62_in_unaryExpr1326); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal98_tree = 
                     (CommonTree)adaptor.create(char_literal98)
@@ -6538,7 +6538,7 @@ public TreeAdaptor getTreeAdaptor() {
                     adaptor.addChild(root_0, char_literal98_tree);
                     }
 
-                    pushFollow(FOLLOW_unaryExpr_in_unaryExpr1335);
+                    pushFollow(FOLLOW_unaryExpr_in_unaryExpr1328);
                     unaryExpr99=unaryExpr();
 
                     state._fsp--;
@@ -6879,18 +6879,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:185:12: pathExpr Pipe unionExprrec
                     {
-                    pushFollow(FOLLOW_pathExpr_in_unionExpr1369);
+                    pushFollow(FOLLOW_pathExpr_in_unionExpr1362);
                     pathExpr100=pathExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_pathExpr.add(pathExpr100.getTree());
 
-                    Pipe101=(Token)match(input,Pipe,FOLLOW_Pipe_in_unionExpr1371); if (state.failed) return retval; 
+                    Pipe101=(Token)match(input,Pipe,FOLLOW_Pipe_in_unionExpr1364); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Pipe.add(Pipe101);
 
 
-                    pushFollow(FOLLOW_unionExprrec_in_unionExpr1373);
+                    pushFollow(FOLLOW_unionExprrec_in_unionExpr1366);
                     unionExprrec102=unionExprrec();
 
                     state._fsp--;
@@ -6898,7 +6898,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_unionExprrec.add(unionExprrec102.getTree());
 
                     // AST REWRITE
-                    // elements: pathExpr, unionExprrec, Pipe
+                    // elements: Pipe, unionExprrec, pathExpr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6940,7 +6940,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_pathExpr_in_unionExpr1395);
+                    pushFollow(FOLLOW_pathExpr_in_unionExpr1388);
                     pathExpr103=pathExpr();
 
                     state._fsp--;
@@ -7001,7 +7001,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_unionExpr_in_unionExprrec1411);
+            pushFollow(FOLLOW_unionExpr_in_unionExprrec1404);
             unionExpr104=unionExpr();
 
             state._fsp--;
@@ -7093,7 +7093,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:193:7: StringLiteral
                     {
-                    StringLiteral105=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_literal1425); if (state.failed) return retval; 
+                    StringLiteral105=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_literal1418); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_StringLiteral.add(StringLiteral105);
 
 
@@ -7133,7 +7133,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:194:7: numericLiteral
                     {
-                    pushFollow(FOLLOW_numericLiteral_in_literal1440);
+                    pushFollow(FOLLOW_numericLiteral_in_literal1433);
                     numericLiteral106=numericLiteral();
 
                     state._fsp--;
@@ -7174,7 +7174,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:195:7: VariableReference
                     {
-                    VariableReference107=(Token)match(input,VariableReference,FOLLOW_VariableReference_in_literal1455); if (state.failed) return retval; 
+                    VariableReference107=(Token)match(input,VariableReference,FOLLOW_VariableReference_in_literal1448); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_VariableReference.add(VariableReference107);
 
 
@@ -7388,15 +7388,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:200:8: NCName Colon NCName
                     {
-                    NCName109=(Token)match(input,NCName,FOLLOW_NCName_in_qName1493); if (state.failed) return retval; 
+                    NCName109=(Token)match(input,NCName,FOLLOW_NCName_in_qName1486); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NCName.add(NCName109);
 
 
-                    Colon110=(Token)match(input,Colon,FOLLOW_Colon_in_qName1495); if (state.failed) return retval; 
+                    Colon110=(Token)match(input,Colon,FOLLOW_Colon_in_qName1488); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Colon.add(Colon110);
 
 
-                    NCName111=(Token)match(input,NCName,FOLLOW_NCName_in_qName1498); if (state.failed) return retval; 
+                    NCName111=(Token)match(input,NCName,FOLLOW_NCName_in_qName1491); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NCName.add(NCName111);
 
 
@@ -7444,7 +7444,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // org/apache/synapse/xpath/compiler/XPath1.g:201:7: NCName
                     {
-                    NCName112=(Token)match(input,NCName,FOLLOW_NCName_in_qName1519); if (state.failed) return retval; 
+                    NCName112=(Token)match(input,NCName,FOLLOW_NCName_in_qName1512); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NCName.add(NCName112);
 
 
@@ -7511,7 +7511,7 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:62:7: ( step ( ( SingleAxisStep relativeLocationPathrec ) | ( RecursiveAxisStep relativeLocationPathrec ) ) )
         // org/apache/synapse/xpath/compiler/XPath1.g:62:7: step ( ( SingleAxisStep relativeLocationPathrec ) | ( RecursiveAxisStep relativeLocationPathrec ) )
         {
-        pushFollow(FOLLOW_step_in_synpred5_XPath1344);
+        pushFollow(FOLLOW_step_in_synpred5_XPath1337);
         step();
 
         state._fsp--;
@@ -7546,9 +7546,9 @@ public TreeAdaptor getTreeAdaptor() {
                 // org/apache/synapse/xpath/compiler/XPath1.g:63:9: ( SingleAxisStep relativeLocationPathrec )
                 // org/apache/synapse/xpath/compiler/XPath1.g:63:10: SingleAxisStep relativeLocationPathrec
                 {
-                match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_synpred5_XPath1356); if (state.failed) return ;
+                match(input,SingleAxisStep,FOLLOW_SingleAxisStep_in_synpred5_XPath1349); if (state.failed) return ;
 
-                pushFollow(FOLLOW_relativeLocationPathrec_in_synpred5_XPath1359);
+                pushFollow(FOLLOW_relativeLocationPathrec_in_synpred5_XPath1352);
                 relativeLocationPathrec();
 
                 state._fsp--;
@@ -7565,9 +7565,9 @@ public TreeAdaptor getTreeAdaptor() {
                 // org/apache/synapse/xpath/compiler/XPath1.g:64:9: ( RecursiveAxisStep relativeLocationPathrec )
                 // org/apache/synapse/xpath/compiler/XPath1.g:64:10: RecursiveAxisStep relativeLocationPathrec
                 {
-                match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_synpred5_XPath1381); if (state.failed) return ;
+                match(input,RecursiveAxisStep,FOLLOW_RecursiveAxisStep_in_synpred5_XPath1374); if (state.failed) return ;
 
-                pushFollow(FOLLOW_relativeLocationPathrec_in_synpred5_XPath1384);
+                pushFollow(FOLLOW_relativeLocationPathrec_in_synpred5_XPath1377);
                 relativeLocationPathrec();
 
                 state._fsp--;
@@ -7592,7 +7592,7 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:122:7: ( locationPath )
         // org/apache/synapse/xpath/compiler/XPath1.g:122:7: locationPath
         {
-        pushFollow(FOLLOW_locationPath_in_synpred16_XPath1850);
+        pushFollow(FOLLOW_locationPath_in_synpred16_XPath1843);
         locationPath();
 
         state._fsp--;
@@ -7608,19 +7608,19 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:123:7: ( filterExpr simpleAxisStep relativeLocationPath )
         // org/apache/synapse/xpath/compiler/XPath1.g:123:7: filterExpr simpleAxisStep relativeLocationPath
         {
-        pushFollow(FOLLOW_filterExpr_in_synpred17_XPath1858);
+        pushFollow(FOLLOW_filterExpr_in_synpred17_XPath1851);
         filterExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        pushFollow(FOLLOW_simpleAxisStep_in_synpred17_XPath1860);
+        pushFollow(FOLLOW_simpleAxisStep_in_synpred17_XPath1853);
         simpleAxisStep();
 
         state._fsp--;
         if (state.failed) return ;
 
-        pushFollow(FOLLOW_relativeLocationPath_in_synpred17_XPath1863);
+        pushFollow(FOLLOW_relativeLocationPath_in_synpred17_XPath1856);
         relativeLocationPath();
 
         state._fsp--;
@@ -7636,13 +7636,13 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:133:13: ( primaryExpr predicate )
         // org/apache/synapse/xpath/compiler/XPath1.g:133:13: primaryExpr predicate
         {
-        pushFollow(FOLLOW_primaryExpr_in_synpred19_XPath1932);
+        pushFollow(FOLLOW_primaryExpr_in_synpred19_XPath1925);
         primaryExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        pushFollow(FOLLOW_predicate_in_synpred19_XPath1934);
+        pushFollow(FOLLOW_predicate_in_synpred19_XPath1927);
         predicate();
 
         state._fsp--;
@@ -7658,15 +7658,15 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:145:9: ( andExpr Or orExprrec )
         // org/apache/synapse/xpath/compiler/XPath1.g:145:9: andExpr Or orExprrec
         {
-        pushFollow(FOLLOW_andExpr_in_synpred22_XPath11019);
+        pushFollow(FOLLOW_andExpr_in_synpred22_XPath11012);
         andExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,Or,FOLLOW_Or_in_synpred22_XPath11021); if (state.failed) return ;
+        match(input,Or,FOLLOW_Or_in_synpred22_XPath11014); if (state.failed) return ;
 
-        pushFollow(FOLLOW_orExprrec_in_synpred22_XPath11023);
+        pushFollow(FOLLOW_orExprrec_in_synpred22_XPath11016);
         orExprrec();
 
         state._fsp--;
@@ -7682,15 +7682,15 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:150:10: ( equalityExpr And andExprrec )
         // org/apache/synapse/xpath/compiler/XPath1.g:150:10: equalityExpr And andExprrec
         {
-        pushFollow(FOLLOW_equalityExpr_in_synpred23_XPath11063);
+        pushFollow(FOLLOW_equalityExpr_in_synpred23_XPath11056);
         equalityExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,And,FOLLOW_And_in_synpred23_XPath11065); if (state.failed) return ;
+        match(input,And,FOLLOW_And_in_synpred23_XPath11058); if (state.failed) return ;
 
-        pushFollow(FOLLOW_andExprrec_in_synpred23_XPath11067);
+        pushFollow(FOLLOW_andExprrec_in_synpred23_XPath11060);
         andExprrec();
 
         state._fsp--;
@@ -7706,15 +7706,15 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:158:7: ( relationalExpr EqualityOp equalityExprrec )
         // org/apache/synapse/xpath/compiler/XPath1.g:158:7: relationalExpr EqualityOp equalityExprrec
         {
-        pushFollow(FOLLOW_relationalExpr_in_synpred24_XPath11115);
+        pushFollow(FOLLOW_relationalExpr_in_synpred24_XPath11108);
         relationalExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,EqualityOp,FOLLOW_EqualityOp_in_synpred24_XPath11117); if (state.failed) return ;
+        match(input,EqualityOp,FOLLOW_EqualityOp_in_synpred24_XPath11110); if (state.failed) return ;
 
-        pushFollow(FOLLOW_equalityExprrec_in_synpred24_XPath11119);
+        pushFollow(FOLLOW_equalityExprrec_in_synpred24_XPath11112);
         equalityExprrec();
 
         state._fsp--;
@@ -7730,15 +7730,15 @@ public TreeAdaptor getTreeAdaptor() {
         // org/apache/synapse/xpath/compiler/XPath1.g:185:12: ( pathExpr Pipe unionExprrec )
         // org/apache/synapse/xpath/compiler/XPath1.g:185:12: pathExpr Pipe unionExprrec
         {
-        pushFollow(FOLLOW_pathExpr_in_synpred29_XPath11369);
+        pushFollow(FOLLOW_pathExpr_in_synpred29_XPath11362);
         pathExpr();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,Pipe,FOLLOW_Pipe_in_synpred29_XPath11371); if (state.failed) return ;
+        match(input,Pipe,FOLLOW_Pipe_in_synpred29_XPath11364); if (state.failed) return ;
 
-        pushFollow(FOLLOW_unionExprrec_in_synpred29_XPath11373);
+        pushFollow(FOLLOW_unionExprrec_in_synpred29_XPath11366);
         unionExprrec();
 
         state._fsp--;
@@ -7867,139 +7867,139 @@ public TreeAdaptor getTreeAdaptor() {
 
  
 
-    public static final BitSet FOLLOW_locationPath_in_xpath236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_locationPath249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_absoluteLocationPath_in_locationPath257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath285 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_absoluteLocationPath287 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abbreviatedAbsoluteLocationPath_in_absoluteLocationPath309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath321 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_abbreviatedAbsoluteLocationPath323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_step_in_relativeLocationPath344 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_relativeLocationPath356 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RecursiveAxisStep_in_relativeLocationPath381 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_step_in_relativeLocationPath413 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_relativeLocationPathrec436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_namedAxisStep_in_step448 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_predicate_in_step450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_namedAxisStep_in_step468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abbreviatedAxisStep_in_step476 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_predicate_in_step479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AbbreviatedStep_in_abbreviatedAxisStep514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_axisSpecifier_in_namedAxisStep534 = new BitSet(new long[]{0x0040041200000000L});
-    public static final BitSet FOLLOW_nodeTest_in_namedAxisStep536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nodeTest_in_namedAxisStep554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AxisName_in_axisSpecifier571 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_AxisNameSeparator_in_axisSpecifier573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AbbreviatedAxisSpecifier_in_axisSpecifier589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nameTest_in_nodeTest611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NodeType_in_nodeTest617 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_LeftParenthesis_in_nodeTest619 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_RightParenthesis_in_nodeTest621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ProcessingInstruction_in_nodeTest634 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_LeftParenthesis_in_nodeTest636 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_StringLiteral_in_nodeTest638 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_RightParenthesis_in_nodeTest640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Star_in_nameTest669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NCName_in_nameTest683 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_Colon_in_nameTest685 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_Star_in_nameTest687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_qName_in_nameTest703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LeftSquareBracket_in_predicate720 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_predicateExpr_in_predicate722 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_RightSquareBracket_in_predicate724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_predicateExpr745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_qName_in_functionCall758 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_LeftParenthesis_in_functionCall760 = new BitSet(new long[]{0x50E2841205062C00L});
-    public static final BitSet FOLLOW_expressionList_in_functionCall765 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_RightParenthesis_in_functionCall772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_expressionList804 = new BitSet(new long[]{0x0000000000010002L});
-    public static final BitSet FOLLOW_Comma_in_expressionList808 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_exprrec_in_expressionList810 = new BitSet(new long[]{0x0000000000010002L});
-    public static final BitSet FOLLOW_expr_in_exprrec838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_locationPath_in_pathExpr850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_filterExpr_in_pathExpr858 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_simpleAxisStep_in_pathExpr860 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_pathExpr863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_filterExpr_in_pathExpr870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_simpleAxisStep888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RecursiveAxisStep_in_simpleAxisStep904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primaryExpr_in_filterExpr932 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_predicate_in_filterExpr934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primaryExpr_in_filterExpr957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LeftParenthesis_in_primaryExpr980 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_expr_in_primaryExpr982 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_RightParenthesis_in_primaryExpr984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_primaryExpr992 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_functionCall_in_primaryExpr1000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_orExpr_in_expr1012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr1019 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_Or_in_orExpr1021 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_orExprrec_in_orExpr1023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr1043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_orExpr_in_orExprrec1057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_andExpr1063 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_And_in_andExpr1065 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_andExprrec_in_andExpr1067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_andExpr1087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_andExprrec1102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1115 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_EqualityOp_in_equalityExpr1117 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_equalityExprrec_in_equalityExpr1119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_equalityExprrec1149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_additiveExpr_in_relationalExpr1159 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_RelationalOp_in_relationalExpr1162 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_additiveExprrec_in_relationalExpr1164 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_additiveExpr_in_additiveExprrec1204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr1228 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_MultiplicativeOP_in_additiveExpr1231 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_multiplicativeExprrec_in_additiveExpr1233 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_multiplicativeExpr_in_multiplicativeExprrec1257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unaryExpr_in_multiplicativeExpr1266 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_UnaryOp_in_multiplicativeExpr1269 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_unaryExprrec_in_multiplicativeExpr1271 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_unaryExpr_in_unaryExprrec1294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unionExpr_in_unaryExpr1321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_unaryExpr1333 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_unaryExpr_in_unaryExpr1335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pathExpr_in_unionExpr1369 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_Pipe_in_unionExpr1371 = new BitSet(new long[]{0x10E0841205062C00L});
-    public static final BitSet FOLLOW_unionExprrec_in_unionExpr1373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pathExpr_in_unionExpr1395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unionExpr_in_unionExprrec1411 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_StringLiteral_in_literal1425 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_numericLiteral_in_literal1440 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_VariableReference_in_literal1455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NCName_in_qName1493 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_Colon_in_qName1495 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_NCName_in_qName1498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NCName_in_qName1519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_step_in_synpred5_XPath1344 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_SingleAxisStep_in_synpred5_XPath1356 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPathrec_in_synpred5_XPath1359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RecursiveAxisStep_in_synpred5_XPath1381 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPathrec_in_synpred5_XPath1384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_locationPath_in_synpred16_XPath1850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_filterExpr_in_synpred17_XPath1858 = new BitSet(new long[]{0x0020800000000000L});
-    public static final BitSet FOLLOW_simpleAxisStep_in_synpred17_XPath1860 = new BitSet(new long[]{0x0040041200002C00L});
-    public static final BitSet FOLLOW_relativeLocationPath_in_synpred17_XPath1863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primaryExpr_in_synpred19_XPath1932 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_predicate_in_synpred19_XPath1934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_synpred22_XPath11019 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_Or_in_synpred22_XPath11021 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_orExprrec_in_synpred22_XPath11023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_synpred23_XPath11063 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_And_in_synpred23_XPath11065 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_andExprrec_in_synpred23_XPath11067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalExpr_in_synpred24_XPath11115 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_EqualityOp_in_synpred24_XPath11117 = new BitSet(new long[]{0x50E0841205062C00L});
-    public static final BitSet FOLLOW_equalityExprrec_in_synpred24_XPath11119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pathExpr_in_synpred29_XPath11369 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_Pipe_in_synpred29_XPath11371 = new BitSet(new long[]{0x10E0841205062C00L});
-    public static final BitSet FOLLOW_unionExprrec_in_synpred29_XPath11373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_locationPath_in_xpath229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_locationPath242 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_absoluteLocationPath_in_locationPath250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_absoluteLocationPath278 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_absoluteLocationPath280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abbreviatedAbsoluteLocationPath_in_absoluteLocationPath302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RecursiveAxisStep_in_abbreviatedAbsoluteLocationPath314 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_abbreviatedAbsoluteLocationPath316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_step_in_relativeLocationPath337 = new BitSet(new long[]{0x0020800000000000L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_relativeLocationPath349 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RecursiveAxisStep_in_relativeLocationPath374 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPathrec_in_relativeLocationPath377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_step_in_relativeLocationPath406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_relativeLocationPathrec429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_namedAxisStep_in_step441 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_predicate_in_step443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_namedAxisStep_in_step461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abbreviatedAxisStep_in_step469 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_predicate_in_step472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AbbreviatedStep_in_abbreviatedAxisStep507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_axisSpecifier_in_namedAxisStep527 = new BitSet(new long[]{0x0040041200000000L});
+    public static final BitSet FOLLOW_nodeTest_in_namedAxisStep529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nodeTest_in_namedAxisStep547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AxisName_in_axisSpecifier564 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_AxisNameSeparator_in_axisSpecifier566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AbbreviatedAxisSpecifier_in_axisSpecifier582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nameTest_in_nodeTest604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NodeType_in_nodeTest610 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_LeftParenthesis_in_nodeTest612 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_RightParenthesis_in_nodeTest614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ProcessingInstruction_in_nodeTest627 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_LeftParenthesis_in_nodeTest629 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_StringLiteral_in_nodeTest631 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_RightParenthesis_in_nodeTest633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Star_in_nameTest662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NCName_in_nameTest676 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_Colon_in_nameTest678 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_Star_in_nameTest680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_qName_in_nameTest696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LeftSquareBracket_in_predicate713 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_predicateExpr_in_predicate715 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_RightSquareBracket_in_predicate717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_predicateExpr738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_qName_in_functionCall751 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_LeftParenthesis_in_functionCall753 = new BitSet(new long[]{0x50E2841205062C00L});
+    public static final BitSet FOLLOW_expressionList_in_functionCall758 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_RightParenthesis_in_functionCall765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expressionList797 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_Comma_in_expressionList801 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_exprrec_in_expressionList803 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_expr_in_exprrec831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_locationPath_in_pathExpr843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_filterExpr_in_pathExpr851 = new BitSet(new long[]{0x0020800000000000L});
+    public static final BitSet FOLLOW_simpleAxisStep_in_pathExpr853 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_pathExpr856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_filterExpr_in_pathExpr863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_simpleAxisStep881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RecursiveAxisStep_in_simpleAxisStep897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primaryExpr_in_filterExpr925 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_predicate_in_filterExpr927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primaryExpr_in_filterExpr950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LeftParenthesis_in_primaryExpr973 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_expr_in_primaryExpr975 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_RightParenthesis_in_primaryExpr977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_primaryExpr985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_functionCall_in_primaryExpr993 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_orExpr_in_expr1005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr1012 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_Or_in_orExpr1014 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_orExprrec_in_orExpr1016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr1036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_orExpr_in_orExprrec1050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_andExpr1056 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_And_in_andExpr1058 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_andExprrec_in_andExpr1060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_andExpr1080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_andExprrec1095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1108 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_EqualityOp_in_equalityExpr1110 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_equalityExprrec_in_equalityExpr1112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpr_in_equalityExpr1128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_equalityExprrec1142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_additiveExpr_in_relationalExpr1152 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_RelationalOp_in_relationalExpr1155 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_additiveExprrec_in_relationalExpr1157 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_additiveExpr_in_additiveExprrec1197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr1221 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_MultiplicativeOP_in_additiveExpr1224 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_multiplicativeExprrec_in_additiveExpr1226 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_multiplicativeExpr_in_multiplicativeExprrec1250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unaryExpr_in_multiplicativeExpr1259 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_UnaryOp_in_multiplicativeExpr1262 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_unaryExprrec_in_multiplicativeExpr1264 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_unaryExpr_in_unaryExprrec1287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unionExpr_in_unaryExpr1314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_unaryExpr1326 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_unaryExpr_in_unaryExpr1328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pathExpr_in_unionExpr1362 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_Pipe_in_unionExpr1364 = new BitSet(new long[]{0x10E0841205062C00L});
+    public static final BitSet FOLLOW_unionExprrec_in_unionExpr1366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pathExpr_in_unionExpr1388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unionExpr_in_unionExprrec1404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_StringLiteral_in_literal1418 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_numericLiteral_in_literal1433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_VariableReference_in_literal1448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NCName_in_qName1486 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_Colon_in_qName1488 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_NCName_in_qName1491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NCName_in_qName1512 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_step_in_synpred5_XPath1337 = new BitSet(new long[]{0x0020800000000000L});
+    public static final BitSet FOLLOW_SingleAxisStep_in_synpred5_XPath1349 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPathrec_in_synpred5_XPath1352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RecursiveAxisStep_in_synpred5_XPath1374 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPathrec_in_synpred5_XPath1377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_locationPath_in_synpred16_XPath1843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_filterExpr_in_synpred17_XPath1851 = new BitSet(new long[]{0x0020800000000000L});
+    public static final BitSet FOLLOW_simpleAxisStep_in_synpred17_XPath1853 = new BitSet(new long[]{0x0040041200002C00L});
+    public static final BitSet FOLLOW_relativeLocationPath_in_synpred17_XPath1856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primaryExpr_in_synpred19_XPath1925 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_predicate_in_synpred19_XPath1927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_synpred22_XPath11012 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_Or_in_synpred22_XPath11014 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_orExprrec_in_synpred22_XPath11016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_synpred23_XPath11056 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_And_in_synpred23_XPath11058 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_andExprrec_in_synpred23_XPath11060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpr_in_synpred24_XPath11108 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_EqualityOp_in_synpred24_XPath11110 = new BitSet(new long[]{0x50E0841205062C00L});
+    public static final BitSet FOLLOW_equalityExprrec_in_synpred24_XPath11112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pathExpr_in_synpred29_XPath11362 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_Pipe_in_synpred29_XPath11364 = new BitSet(new long[]{0x10E0841205062C00L});
+    public static final BitSet FOLLOW_unionExprrec_in_synpred29_XPath11366 = new BitSet(new long[]{0x0000000000000002L});
 
 }

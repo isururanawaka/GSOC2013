@@ -3,13 +3,7 @@ package org.apache.synapse.xpath.expression;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: isuru
- * Date: 4/19/13
- * Time: 11:48 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class DefaultFilterExpr implements FilterExpr{
     private Expr expr;
     private PredicateSet predicates;
